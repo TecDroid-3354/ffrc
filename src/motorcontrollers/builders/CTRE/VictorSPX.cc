@@ -26,14 +26,22 @@ namespace ffrc {
                 return *this;
             }
 
+            VictorSPXBuilder& VictorSPXBuilder::ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode mode) {
+                this -> controlMode = mode;
+                return *this;
+            }
+
             controllers::VictorSPX VictorSPXBuilder::Build() {
-                controllers::VictorSPX victorspx{std::make_unique<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>(canId)};
+                auto victorspx = std::make_unique<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>(canId);
 
-                victorspx.SetInversionState(isInverted);
-                victorspx.SetSpeedOutputMultiplier(speedOutputMultiplier);
-                victorspx.SetSpeedThreshold(speedLimitThreshold);
+                controllers::VictorSPX victorspxController{std::move(victorspx)};
+                victorspxController.SetInversionState(isInverted);
+                victorspxController.SetSpeedOutputMultiplier(speedOutputMultiplier);
+                victorspxController.SetSpeedThreshold(speedLimitThreshold);
 
-                return victorspx;
+                victorspxController.SetControlMode(controlMode);
+
+                return victorspxController;
             }
 
         }

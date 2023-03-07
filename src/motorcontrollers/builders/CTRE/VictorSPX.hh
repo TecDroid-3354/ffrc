@@ -20,7 +20,13 @@ namespace ffrc {
 
                     VictorSPXBuilder& Id(int);
 
+                    VictorSPXBuilder& ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
+
                     controllers::VictorSPX Build() override;
+
+                    private:
+                        ctre::phoenix::motorcontrol::VictorSPXControlMode controlMode =
+                            ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput;
             };
 
         }
