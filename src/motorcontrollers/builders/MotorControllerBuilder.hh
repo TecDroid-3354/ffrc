@@ -41,7 +41,7 @@ namespace ffrc {
             };
 
             template <typename ControllerType, typename BaseController>
-            class PWMMotorControllerBuilder: public MotorControllerBuilder<ControllerType, BaseController> {
+            class PWMMotorControllerBuilder: virtual public MotorControllerBuilder<ControllerType, BaseController> {
                 public:
                     PWMMotorControllerBuilder<ControllerType, BaseController>& Port(int pwmPort);
 
@@ -50,8 +50,9 @@ namespace ffrc {
             };
 
             template <typename ControllerType, typename BaseController>
-            class CANMotorControllerBuilder: public MotorControllerBuilder<ControllerType, BaseController> {
+            class CANMotorControllerBuilder: virtual public MotorControllerBuilder<ControllerType, BaseController> {
                 public:
+
                     CANMotorControllerBuilder<ControllerType, BaseController>& Id(int canId);
 
                 protected:
