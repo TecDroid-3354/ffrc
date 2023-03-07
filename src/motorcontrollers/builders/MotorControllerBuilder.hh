@@ -1,5 +1,4 @@
-#ifndef FFRC_MOTORCONTROLLERS_BUILDERS_MOTOR_CONTROLLER_BUILDER_HH
-#define FFRC_MOTORCONTROLLERS_BUILDERS_MOTOR_CONTROLLER_BUILDER_HH
+#pragma once
 
 #include "motorcontrollers/controllers/MotorController.hh"
 
@@ -64,5 +63,3 @@ namespace ffrc {
     }
 
 }
-
-#endif//FFRC_MOTORCONTROLLERS_BUILDERS_MOTOR_CONTROLLER_BUILDER_HH

@@ -1,5 +1,4 @@
-#ifndef FFRC_MOTOR_CONTROLLER_HH
-#define FFRC_MOTOR_CONTROLLER_HH
+#pragma once
 
 #include "util/limits/Threshold.hh"
 
@@ -46,5 +45,3 @@ namespace ffrc {
         }
     }
 }
-
-#endif//FFRC_MOTOR_CONTROLLER_HH

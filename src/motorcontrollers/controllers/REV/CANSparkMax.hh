@@ -1,5 +1,4 @@
-#ifndef FFRC_MOTORCONTROLLERS_CONTROLLERS_CAN_SPARK_MAX_HH
-#define FFRC_MOTORCONTROLLERS_CONTROLLERS_CAN_SPARK_MAX_HH
+#pragma once
 
 #include "motorcontrollers/controllers/MotorController.hh"
 
@@ -21,5 +20,3 @@ namespace ffrc {
     }
 
 }
-
-#endif//FFRC_MOTORCONTROLLERS_CONTROLLERS_CAN_SPARK_MAX_HH

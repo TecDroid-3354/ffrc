@@ -1,5 +1,4 @@
-#ifndef FFRC_THRESHOLD_HH
-#define FFRC_THRESHOLD_HH
+#pragma once 
 
 namespace ffrc {
 
@@ -19,5 +18,3 @@ namespace ffrc {
     }
 
 }
-
-#endif
