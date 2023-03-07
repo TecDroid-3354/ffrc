@@ -6,16 +6,19 @@ namespace ffrc {
 
         namespace builders {
 
-            CANSparkMaxBuilder &CANSparkMaxBuilder::MotorType(rev::CANSparkMax::MotorType type) {
+            CANSparkMaxBuilder& CANSparkMaxBuilder::MotorType(rev::CANSparkMax::MotorType type) {
                 this -> type = type;
                 return *this;
             }
 
             controllers::CANSparkMax CANSparkMaxBuilder::Build() {
-                std::unique_ptr<rev::CANSparkMax> spark =
-                    std::make_unique<rev::CANSparkMax>(id, type);
+                controllers::CANSparkMax spark{std::make_unique<rev::CANSparkMax>(canId, type)};
 
-                return controllers::CANSparkMax{std::move(spark)};
+                spark.SetInversionState(isInverted);
+                spark.SetSpeedOutputMultiplier(speedOutputMultiplier);
+                spark.SetSpeedThreshold(speedLimitThreshold);
+
+                return spark;
             }
 
         }

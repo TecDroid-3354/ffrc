@@ -16,6 +16,9 @@ namespace ffrc {
 
             class MotorController {
                 public:
+
+                    MotorController(std::unique_ptr<frc::MotorController>);
+
                     void SetMotorSpeed(double);
                     void SetOutputVoltage(units::voltage::volt_t);
                     double GetMotorSpeed();
@@ -24,23 +27,21 @@ namespace ffrc {
                     void DisableMotor();
 
                     void SetInversionState(bool isInverted);
+                    void Invert();
                     bool GetInversionState();
 
-                    void SetMotorSpeedThreshold(util::Threshold);
-                    util::Threshold GetMotorSpeedThreshold();
+                    void SetSpeedThreshold(util::Threshold);
+                    util::Threshold GetSpeedThreshold();
 
-                    void SetOutputSpeedMultipler(double multiplier);
-                    double GetOutputSpeedMultipler();
+                    void SetSpeedOutputMultiplier(double multiplier);
+                    double GetSpeedOutputMultiplier();
 
                 protected:
-                    MotorController(std::unique_ptr<frc::MotorController> controller);
-                    ~MotorController();
-
                     std::unique_ptr<frc::MotorController> controller;
 
                 private:
-                    double outputSpeedMultiplier = 1.0;
-                    util::Threshold motorSpeedThreshold = util::Threshold(-1.0, 1.0);
+                    double speedOutputMultiplier = 1.0;
+                    util::Threshold speedThreshold = util::Threshold(-1.0, 1.0);
             };
 
         }

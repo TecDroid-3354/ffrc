@@ -8,7 +8,8 @@ namespace ffrc {
 
         namespace controllers {
 
-            CANSparkMax::CANSparkMax(std::unique_ptr<rev::CANSparkMax> controller): MotorController(std::move(controller)) {}
+            CANSparkMax::CANSparkMax(std::unique_ptr<rev::CANSparkMax> controller):
+            MotorController(std::move(controller)) {}
 
         }
 

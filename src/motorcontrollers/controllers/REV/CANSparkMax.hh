@@ -11,12 +11,9 @@ namespace ffrc {
 
         namespace controllers {
 
-            class CANSparkMax: MotorController {
+            class CANSparkMax: public MotorController {
                 public:
                     CANSparkMax(std::unique_ptr<rev::CANSparkMax>);
-
-                private:
-
             };
 
         }

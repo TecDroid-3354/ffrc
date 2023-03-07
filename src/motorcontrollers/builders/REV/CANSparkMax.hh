@@ -12,9 +12,18 @@ namespace ffrc {
 
         namespace builders {
 
-            class CANSparkMaxBuilder: CANMotorControllerBuilder<controllers::CANSparkMax> {
+            class CANSparkMaxBuilder: public CANMotorControllerBuilder<controllers::CANSparkMax, rev::CANSparkMax> {
                 public:
-                    CANSparkMaxBuilder &MotorType(rev::CANSparkMax::MotorType);
+                    CANSparkMaxBuilder();
+
+/*
+                    CANSparkMaxBuilder& SpeedLimitThreshold(util::Threshold);
+                    CANSparkMaxBuilder& SpeedOutputMultiplier(double);
+                    CANSparkMaxBuilder& Invert();
+
+                    CANSparkMaxBuilder& Id(util::Threshold);
+*/                  CANSparkMaxBuilder& MotorType(rev::CANSparkMax::MotorType type);
+
                     controllers::CANSparkMax Build() override;
 
                 protected:

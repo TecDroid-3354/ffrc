@@ -11,7 +11,7 @@ namespace ffrc {
 
         namespace builders {
 
-            template <typename ControllerType>
+            template <typename ControllerType, typename BaseController>
             class MotorControllerBuilder {
 
                 static_assert(std::is_base_of<controllers::MotorController, ControllerType>::value,
@@ -20,33 +20,42 @@ namespace ffrc {
                     "ffrc::motorcontrol::controllers::MotorController"
                 );
 
+                static_assert(std::is_base_of<frc::MotorController, BaseController>::value,
+                    "Please ensure that the BaseController "
+                    "is derived from frc::MotorController "
+                    "when making a ffrc::motorcontrol::controllers::MotorControllerBuilder"
+                );
+
                 public:
-                    MotorControllerBuilder<ControllerType> &SpeedLimitThreshold(util::Threshold);
-                    MotorControllerBuilder<ControllerType> &SpeedOutputMultiplier(double);
+
+                    MotorControllerBuilder<ControllerType, BaseController>& SpeedLimitThreshold(util::Threshold);
+                    MotorControllerBuilder<ControllerType, BaseController>& SpeedOutputMultiplier(double);
+                    MotorControllerBuilder<ControllerType, BaseController>& Invert();
 
                     virtual ControllerType Build() = 0;
 
                 protected:
+                    util::Threshold speedLimitThreshold = util::Threshold(-1.0, 1.0);
                     double speedOutputMultiplier = 1.0;
-                    util::Threshold speedLimitThreshold = util::Threshold{-1.0, 1.0};
+                    bool isInverted = false;
             };
 
-            template <typename ControllerType>
-            class PWMMotorControllerBuilder: MotorControllerBuilder<ControllerType> {
+            template <typename ControllerType, typename BaseController>
+            class PWMMotorControllerBuilder: public MotorControllerBuilder<ControllerType, BaseController> {
                 public:
-                    PWMMotorControllerBuilder<ControllerType> &Port(int port);
-                 
+                    PWMMotorControllerBuilder<ControllerType, BaseController>& Port(int pwmPort);
+
                 protected:
-                    int port = 0;
+                    int pwmPort = 0;
             };
 
-            template <typename ControllerType>
-            class CANMotorControllerBuilder: MotorControllerBuilder<ControllerType> {
+            template <typename ControllerType, typename BaseController>
+            class CANMotorControllerBuilder: public MotorControllerBuilder<ControllerType, BaseController> {
                 public:
-                    CANMotorControllerBuilder<ControllerType> &ID(int id);
+                    CANMotorControllerBuilder<ControllerType, BaseController>& Id(int canId);
 
                 protected:
-                    int id = 0;
+                int canId = 0;
             };
 
         }

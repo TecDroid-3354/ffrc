@@ -14,6 +14,8 @@ namespace ffrc {
             inline auto operator[](float value) -> bool { return value >= lowerBound && value <= upperBound; }
         };
 
+        double ClampValueInThreshold(Threshold&, double);
+
     }
 
 }

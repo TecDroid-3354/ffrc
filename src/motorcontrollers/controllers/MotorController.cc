@@ -1,5 +1,7 @@
 #include "MotorController.hh"
 
+#include <algorithm>
+
 namespace ffrc {
 
     namespace motorcontrol {
@@ -8,13 +10,8 @@ namespace ffrc {
 
             MotorController::MotorController(std::unique_ptr<frc::MotorController> controller): controller(std::move(controller)) {}
 
-            MotorController::~MotorController() = default;
-
             void MotorController::SetMotorSpeed(double speed) {
-
-                // Branchless version of tesing wether the speed is in the
-                // Threshold or not (See Threshold::operator[](double))
-                controller->Set(speed * outputSpeedMultiplier * motorSpeedThreshold[std::abs(speed)]);
+                controller->Set(util::ClampValueInThreshold(speedThreshold, speed * speedOutputMultiplier));
             }
 
             void MotorController::SetOutputVoltage(units::voltage::volt_t voltage) {
@@ -37,24 +34,28 @@ namespace ffrc {
                 controller->SetInverted(inverted);
             }
 
+            void MotorController::Invert() {
+                controller->SetInverted(true);
+            }
+
             bool MotorController::GetInversionState() {
                 return controller->GetInverted();
             }
 
-            void MotorController::SetMotorSpeedThreshold(util::Threshold threshold) {
-                motorSpeedThreshold = threshold;
+            void MotorController::SetSpeedThreshold(util::Threshold threshold) {
+                speedThreshold = threshold;
             }
 
-            util::Threshold MotorController::GetMotorSpeedThreshold() {
-                return motorSpeedThreshold;
+            util::Threshold MotorController::GetSpeedThreshold() {
+                return speedThreshold;
             }
 
-            void MotorController::SetOutputSpeedMultipler(double multiplier) {
-                outputSpeedMultiplier = multiplier;
+            void MotorController::SetSpeedOutputMultiplier(double multiplier) {
+                speedOutputMultiplier= multiplier;
             }
 
-            double MotorController::GetOutputSpeedMultipler() {
-                return outputSpeedMultiplier;
+            double MotorController::GetSpeedOutputMultiplier() {
+                return speedOutputMultiplier;
             }
 
         }
