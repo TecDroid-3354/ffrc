@@ -2,7 +2,7 @@
 
 #include <frc/Encoder.h>
 
-#include "core/encoders/MotorEncoder.hh"
+#include "encoders/MotorEncoder.hh"
 
 namespace ffrc {
 

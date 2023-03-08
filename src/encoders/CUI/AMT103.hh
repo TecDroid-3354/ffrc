@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/encoders/generic/GenericEncoder.hh"
+#include "encoders/generic/GenericEncoder.hh"
 
 namespace ffrc {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/encoders/MotorEncoder.hh"
+#include "encoders/MotorEncoder.hh"
 
 #include <rev/SparkMaxRelativeEncoder.h>
 

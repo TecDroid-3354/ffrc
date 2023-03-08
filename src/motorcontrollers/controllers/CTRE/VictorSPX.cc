@@ -1,4 +1,4 @@
-#include "motorcontrollers/controllers/CTRE/VictorSPX.hh"
+#include "VictorSPX.hh"
 
 namespace ffrc {
 

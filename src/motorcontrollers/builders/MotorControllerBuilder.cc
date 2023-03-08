@@ -1,4 +1,4 @@
-#include "motorcontrollers/builders/MotorControllerBuilder.hh"
+#include "MotorControllerBuilder.hh"
 
 namespace ffrc {
 

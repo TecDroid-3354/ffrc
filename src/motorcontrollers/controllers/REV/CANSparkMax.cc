@@ -1,4 +1,4 @@
-#include "motorcontrollers/controllers/REV/CANSparkMax.hh"
+#include "CANSparkMax.hh"
 
 #include <rev/CANSparkMax.h>
 

@@ -1,4 +1,4 @@
-#include "motorcontrollers/builders/REV/CANSparkMax.hh"
+#include "CANSparkMax.hh"
 
 namespace ffrc {
 
