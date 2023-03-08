@@ -5,7 +5,7 @@
 #include <frc/TimedRobot.h>
 #include <frc2/command/CommandPtr.h>
 
-#include "RobotContainer.h"
+#include "RobotContainer.hh"
 
 class Robot : public frc::TimedRobot {
  public:
