@@ -6,13 +6,27 @@
 
 namespace ffrc {
 
-    namespace motorcontrol {
+    namespace motorcontrollers {
 
-        namespace controllers {
+        namespace devices {
 
             class CANSparkMax: public MotorController {
                 public:
                     CANSparkMax(std::unique_ptr<rev::CANSparkMax>);
+
+                    void    SetMotorSpeed(double)                    override;
+                    void    SetOutputVoltage(units::voltage::volt_t) override;
+                    double  GetMotorSpeed()                          override;
+
+                    void    StopMotor()                              override;
+                    void    DisableMotor()                           override;
+
+                    void    SetInversionState(bool isInverted)       override;
+                    void    Invert()                                 override;
+                    bool    GetInversionState()                      override;
+                
+                private:
+                    std::unique_ptr<rev::CANSparkMax> controller;
             };
 
         }
