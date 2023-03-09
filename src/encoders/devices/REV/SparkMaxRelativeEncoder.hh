@@ -14,26 +14,26 @@ namespace ffrc {
                 public:
                     SparkMaxRelativeEncoder(std::unique_ptr<rev::SparkMaxRelativeEncoder>);
 
-                    virtual void     SetResolution(uint32_t)             = 0;
-                    virtual double   GetResolution()                     = 0;
+                    void     SetResolution(uint32_t)             override;
+                    double   GetResolution()                     override;
 
-                    virtual void     SetPositionConversionFactor(double) = 0;
-                    virtual double   GetPositionConversionFactor()       = 0;
+                    void     SetPositionConversionFactor(double) override;
+                    double   GetPositionConversionFactor()       override;
 
-                    virtual void     SetTraveledDistance(double)         = 0;
-                    virtual double   GetTraveledDistance()               = 0;
+                    void     SetTraveledDistance(double)         override;
+                    double   GetTraveledDistance()               override;
 
-                    virtual double   GetVelocity()                       = 0;
+                    double   GetVelocity()                       override;
 
-                    virtual bool     IsStopped()                         = 0;
+                    bool     IsStopped()                         override;
 
-                    virtual void     SetMeasurementPeriod(uint32_t)      = 0;
-                    virtual uint32_t GetMeasurementPeriod()              = 0;
+                    void     SetMeasurementPeriod(uint32_t)      override;
+                    uint32_t GetMeasurementPeriod()              override;
 
-                    virtual void     SetSamplesToAverage(int)            = 0;
-                    virtual int      GetSamplesToAverage()               = 0;
+                    void     SetSamplesToAverage(int)            override;
+                    int      GetSamplesToAverage()               override;
 
-                    virtual void     Reset()                             = 0;
+                    void     Reset()                             override;
 
                 private:
                     std::unique_ptr<rev::SparkMaxRelativeEncoder> encoder;

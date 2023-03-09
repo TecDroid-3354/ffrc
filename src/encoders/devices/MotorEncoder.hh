@@ -26,7 +26,7 @@ namespace ffrc {
                     virtual void     SetMeasurementPeriod(uint32_t)      = 0;
                     virtual uint32_t GetMeasurementPeriod()              = 0;
 
-                    virtual void     SetSamplesToAverage()               = 0;
+                    virtual void     SetSamplesToAverage(int)            = 0;
                     virtual int      GetSamplesToAverage()               = 0;
 
                     virtual void     Reset()                             = 0;
