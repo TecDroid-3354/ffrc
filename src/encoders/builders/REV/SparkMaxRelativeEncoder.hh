@@ -1,7 +1,9 @@
 #pragma once
+#include <utility>
 
 #include "encoders/builders/MotorEncoderBuilder.hh"
 #include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
+#include "motorcontrollers/controllers/REV/CANSparkMax.hh"
 
 namespace ffrc {
 
@@ -11,7 +13,7 @@ namespace ffrc {
 
             class SparkMaxRelativeEncoder: MotorEncoderBuilder<devices::SparkMaxRelativeEncoder> {
                 public:
-                    SparkMaxRelativeEncoder(rev::SparkMaxRelativeEncoder&&);
+                    SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::CANSparkMax>);
 
                     SparkMaxRelativeEncoder* SetResolution(uint32_t)             override;
                     SparkMaxRelativeEncoder* SetPositionConversionFactor(double) override;
@@ -20,7 +22,7 @@ namespace ffrc {
                     std::shared_ptr<devices::SparkMaxRelativeEncoder> Build();
 
                 protected:
-                    std::unique_ptr<rev::SparkMaxRelativeEncoder> from;
+                    std::shared_ptr<motorcontrollers::devices::CANSparkMax> from;
 
             };
 

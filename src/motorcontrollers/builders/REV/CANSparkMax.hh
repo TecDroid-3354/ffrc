@@ -3,6 +3,7 @@
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
 #include "motorcontrollers/controllers/REV/CANSparkMax.hh"
+#include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
 
 #include <rev/CANSparkMax.h>
 

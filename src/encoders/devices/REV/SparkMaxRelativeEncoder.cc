@@ -6,8 +6,8 @@ namespace ffrc {
 
         namespace devices {
 
-            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::unique_ptr<rev::SparkMaxRelativeEncoder> encoder):
-            encoder(std::move(encoder)) {}
+            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder):
+            encoder(encoder) {}
 
             void SparkMaxRelativeEncoder::SetResolution(uint32_t distance){
                 // Already Handled by the encoder

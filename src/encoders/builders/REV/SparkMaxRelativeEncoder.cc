@@ -8,8 +8,8 @@ namespace ffrc {
 
         namespace builders {
 
-            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(rev::SparkMaxRelativeEncoder&& from):
-            from(std::unique_ptr<rev::SparkMaxRelativeEncoder>(new rev::SparkMaxRelativeEncoder(from))) {}
+            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::CANSparkMax> from):
+            from(from) {}
 
             SparkMaxRelativeEncoder* SparkMaxRelativeEncoder::SetResolution(uint32_t resolution) {
                 this -> resolution = resolution;
@@ -27,11 +27,14 @@ namespace ffrc {
             }
 
             std::shared_ptr<devices::SparkMaxRelativeEncoder> SparkMaxRelativeEncoder::Build() {
-                from -> SetPositionConversionFactor(positionConversionFactor);
-                from -> SetPosition(startingDistance);
+                std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder = from -> GetOrCreateEncoder();
+
+                encoder -> SetPositionConversionFactor(positionConversionFactor);
+                encoder -> SetPosition(startingDistance);
                 // Resolution unneeded: 42
 
-                std::shared_ptr<devices::SparkMaxRelativeEncoder> relativeEncoder = std::make_unique<devices::SparkMaxRelativeEncoder>(std::move(from));
+                std::shared_ptr<devices::SparkMaxRelativeEncoder> relativeEncoder =
+                    std::make_shared<devices::SparkMaxRelativeEncoder>(std::move(encoder));
 
                 return relativeEncoder;
             }

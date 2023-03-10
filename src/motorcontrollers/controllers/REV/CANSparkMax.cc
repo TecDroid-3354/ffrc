@@ -7,7 +7,7 @@ namespace ffrc {
         namespace devices {
 
             CANSparkMax::CANSparkMax(std::unique_ptr<rev::CANSparkMax> controller):
-            controller(std::move(controller)) {}
+            controller(std::move(controller)), encoder(std::nullptr_t{}) {}
 
             void CANSparkMax::SetMotorSpeed(double speed) {
                 controller -> Set(util::ClampValueInThreshold(speedThreshold, speed * speedOutputMultiplier));
@@ -39,6 +39,14 @@ namespace ffrc {
 
             bool CANSparkMax::GetInversionState() {
                 return controller -> GetInverted();
+            }
+
+            std::shared_ptr<rev::SparkMaxRelativeEncoder> CANSparkMax::GetOrCreateEncoder() {
+                if (encoder.get() == nullptr) {
+                    encoder = std::make_shared<rev::SparkMaxRelativeEncoder>(controller -> GetEncoder());
+                }
+
+                return encoder;
             }
 
         }

@@ -12,7 +12,7 @@ namespace ffrc {
 
             class SparkMaxRelativeEncoder: public MotorEncoder {
                 public:
-                    SparkMaxRelativeEncoder(std::unique_ptr<rev::SparkMaxRelativeEncoder>);
+                    SparkMaxRelativeEncoder(std::shared_ptr<rev::SparkMaxRelativeEncoder>);
 
                     void     SetResolution(uint32_t)             override;
                     double   GetResolution()                     override;
@@ -36,7 +36,7 @@ namespace ffrc {
                     void     Reset()                             override;
 
                 private:
-                    std::unique_ptr<rev::SparkMaxRelativeEncoder> encoder;
+                    std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder;
 
             };
 
