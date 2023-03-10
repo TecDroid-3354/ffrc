@@ -89,7 +89,7 @@ namespace ffrc {
 				return this;
 			}
 
-            devices::CANSparkMax CANSparkMax::Build() {
+            std::shared_ptr<devices::CANSparkMax> CANSparkMax::Build() {
                 std::unique_ptr<rev::CANSparkMax> spark = std::make_unique<rev::CANSparkMax>(canId, motorType);
 
                 spark -> SetSmartCurrentLimit(currentLimit.value());
@@ -117,9 +117,9 @@ namespace ffrc {
 
                 }
 
-                devices::CANSparkMax sparkController{std::move(spark)};
-                sparkController.SetSpeedOutputMultiplier(speedOutputMultiplier);
-                sparkController.SetSpeedThreshold(speedLimitThreshold);
+                std::shared_ptr<devices::CANSparkMax> sparkController = std::make_shared<devices::CANSparkMax>(std::move(spark));
+                sparkController -> SetSpeedOutputMultiplier(speedOutputMultiplier);
+                sparkController -> SetSpeedThreshold(speedLimitThreshold);
 
                 return sparkController;
             }

@@ -37,7 +37,7 @@ namespace ffrc {
                     CANSparkMax* EnableVoltageCompensation();
                     CANSparkMax* EnableSoftLimit();
 
-                    devices::CANSparkMax Build() override;
+                    std::shared_ptr<devices::CANSparkMax> Build() override;
 
                 protected:
                     rev::CANSparkMax::MotorType          motorType          = rev::CANSparkMax::MotorType::kBrushless;

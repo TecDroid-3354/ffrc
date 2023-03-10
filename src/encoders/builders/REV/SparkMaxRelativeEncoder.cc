@@ -1,5 +1,7 @@
 #include "SparkMaxRelativeEncoder.hh"
 
+#include <memory>
+
 namespace ffrc {
 
     namespace encoders {
@@ -24,12 +26,12 @@ namespace ffrc {
                 return this;
             }
 
-            devices::SparkMaxRelativeEncoder SparkMaxRelativeEncoder::Build() {
+            std::shared_ptr<devices::SparkMaxRelativeEncoder> SparkMaxRelativeEncoder::Build() {
                 from -> SetPositionConversionFactor(positionConversionFactor);
                 from -> SetPosition(startingDistance);
                 // Resolution unneeded: 42
 
-                devices::SparkMaxRelativeEncoder relativeEncoder{std::move(from)};
+                std::shared_ptr<devices::SparkMaxRelativeEncoder> relativeEncoder = std::make_unique<devices::SparkMaxRelativeEncoder>(std::move(from));
 
                 return relativeEncoder;
             }

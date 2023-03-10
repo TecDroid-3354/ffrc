@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <memory>
 
 namespace ffrc {
 
@@ -11,12 +12,11 @@ namespace ffrc {
             template <typename EncoderType>
             class MotorEncoderBuilder {
                 public:
-
                     virtual MotorEncoderBuilder* SetResolution(uint32_t)             = 0;
                     virtual MotorEncoderBuilder* SetPositionConversionFactor(double) = 0;
                     virtual MotorEncoderBuilder* StartWithDistance(double)           = 0;
 
-                    virtual EncoderType Build() = 0;
+                    virtual std::shared_ptr<EncoderType> Build() = 0;
                 
                 protected:
                     uint32_t resolution = 2048;
