@@ -29,7 +29,7 @@ namespace ffrc {
 
                     AMT103* SetSwitchConfiguration(bool, bool, bool, bool);
 
-                    std::shared_ptr<devices::AMT103> Build() override;
+                    std::shared_ptr<devices::AMT103> Build();
 
                 private:
                     std::unique_ptr<frc::Encoder> encoder;

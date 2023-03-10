@@ -12,7 +12,7 @@ namespace ffrc {
 
         namespace builders {
 
-            class VictorSPX: public CANMotorControllerBuilder<devices::VictorSPX, ctre::phoenix::motorcontrol::can::WPI_VictorSPX> {
+            class VictorSPX: public CANMotorControllerBuilder<devices::VictorSPX> {
                 public:
                     VictorSPX* SpeedLimitThreshold(util::Threshold) override;
                     VictorSPX* SpeedOutputMultiplier(double) override;
@@ -22,7 +22,7 @@ namespace ffrc {
 
                     VictorSPX* ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
 
-                    std::shared_ptr<devices::VictorSPX> Build() override;
+                    std::shared_ptr<devices::VictorSPX> Build();
 
                     private:
                         ctre::phoenix::motorcontrol::VictorSPXControlMode controlMode =

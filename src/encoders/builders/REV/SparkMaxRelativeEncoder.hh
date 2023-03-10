@@ -17,7 +17,7 @@ namespace ffrc {
                     SparkMaxRelativeEncoder* SetPositionConversionFactor(double) override;
                     SparkMaxRelativeEncoder* StartWithDistance(double)           override;
 
-                    std::shared_ptr<devices::SparkMaxRelativeEncoder> Build() override;
+                    std::shared_ptr<devices::SparkMaxRelativeEncoder> Build();
 
                 protected:
                     std::unique_ptr<rev::SparkMaxRelativeEncoder> from;
