@@ -30,10 +30,10 @@ namespace ffrc {
                     virtual MotorControllerBuilder<ControllerType, BaseController>* SpeedOutputMultiplier(double)        = 0;
                     virtual MotorControllerBuilder<ControllerType, BaseController>* Invert()                             = 0;
 
-                    virtual std::shared_ptr<ControllerType> Build() = 0;
+                    virtual std::shared_ptr ControllerType Build() = 0;
 
                 protected:
-                    util::Threshold speedLimitThreshold = util::Threshold(-1.0, 1.0);
+                    util::Threshold speedLimitThreshold{-1.0, 1.0};
                     double speedOutputMultiplier = 1.0;
                     bool isInverted = false;
             };
