@@ -117,14 +117,14 @@ namespace ffrc {
                     double minRequiredLeftTriggerValue  = 0.0;
                     double minRequiredRightTriggerValue = 0.0;
 
-                    char leftXInversionMultiplier = 1;
-                    char leftYInversionMultiplier = 1;
+                    signed char leftXInversionMultiplier = 1;
+                    signed char leftYInversionMultiplier = 1;
 
-                    char rightXInversionMultiplier = 1;
-                    char rightYInversionMultiplier = 1;
+                    signed char rightXInversionMultiplier = 1;
+                    signed char rightYInversionMultiplier = 1;
 
-                    char rightTriggerInversionMultiplier = 1;
-                    char leftTriggerInversionMultiplier  = 1;
+                    signed char rightTriggerInversionMultiplier = 1;
+                    signed char leftTriggerInversionMultiplier  = 1;
 
                     bool leftTriggerOppositeOutput  = false;
                     bool rightTriggerOpppsiteOutput = false;

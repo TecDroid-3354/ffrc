@@ -204,27 +204,27 @@ namespace ffrc {
             }
 
             void XboxController::SetLeftXInversionState(bool value) {
-                this -> leftXInversionMultiplier = value - !value;
+                this -> leftXInversionMultiplier = !value - value;
             }
 
             void XboxController::SetLeftYInversionState(bool value) {
-                this -> leftYInversionMultiplier = value - !value;
+                this -> leftYInversionMultiplier = !value - value;
             }
 
             void XboxController::SetRightXInversionState(bool value) {
-                this -> rightXInversionMultiplier = value - !value;
+                this -> rightXInversionMultiplier = !value - value;
             }
 
             void XboxController::SetRightYInversionState(bool value) {
-                this -> rightYInversionMultiplier = value - !value;
+                this -> rightYInversionMultiplier = !value - value;
             }
 
             void XboxController::SetLeftTriggerInversionState(bool value) {
-                this -> leftTriggerInversionMultiplier = value - !value;
+                this -> leftTriggerInversionMultiplier = !value - value;
             }
 
             void XboxController::SetRightTriggerInversionState(bool value) {
-                this -> rightTriggerInversionMultiplier = value - !value;
+                this -> rightTriggerInversionMultiplier = !value - value;
             }
 
             void XboxController::SetLeftTriggerOppositeOutputState(bool value) {
