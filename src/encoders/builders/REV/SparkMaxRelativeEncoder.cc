@@ -1,19 +1,24 @@
 #include "SparkMaxRelativeEncoder.hh"
 
 #include <memory>
+#include <assert.h>
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders  {
 
-            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::MotorController> from) {
-                static_assert(std::is_same<Type, devices::SparkMaxRelativeEncoder>::value,
-                    "The MotorController passed in must be a SparkMax."
+            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<devices::motorcontrollers::MotorController> from) {
+                // TODO: REQUIRES TESTING!!!
+                std::shared_ptr<devices::motorcontrollers::CANSparkMax> sparkMaxController = std::static_pointer_cast<devices::motorcontrollers::CANSparkMax>(from);
+
+                assert(sparkMaxController.get() != nullptr &&
+                    "The MotorController passed in must be a Shared Pointer to a ffrc::devices::motorcontrollers::CANSparkMax."
                 );
 
-                this -> from = std::static_pointer_cast<motorcontrollers::devices::CANSparkMax>(from);
+                this -> from = sparkMaxController;
+
             }
 
             SparkMaxRelativeEncoder* SparkMaxRelativeEncoder::SetResolution(long double resolution) {
@@ -31,15 +36,15 @@ namespace ffrc {
                 return this;
             }
 
-            std::shared_ptr<devices::SparkMaxRelativeEncoder> SparkMaxRelativeEncoder::Build() {
+            std::shared_ptr<devices::encoders::SparkMaxRelativeEncoder> SparkMaxRelativeEncoder::Build() {
                 std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder = from -> GetOrCreateEncoder();
 
                 encoder -> SetPositionConversionFactor(positionConversionFactor);
                 encoder -> SetPosition(startingDistance);
                 // Resolution unneeded: 42
 
-                std::shared_ptr<devices::SparkMaxRelativeEncoder> relativeEncoder =
-                    std::make_shared<devices::SparkMaxRelativeEncoder>(std::move(encoder));
+                std::shared_ptr<devices::encoders::SparkMaxRelativeEncoder> relativeEncoder =
+                    std::make_shared<devices::encoders::SparkMaxRelativeEncoder>(std::move(encoder));
 
                 return relativeEncoder;
             }

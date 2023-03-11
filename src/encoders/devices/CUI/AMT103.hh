@@ -6,9 +6,9 @@
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace devices {
 
-        namespace devices {
+        namespace encoders {
 
             class AMT103: MotorEncoder {
                 public:

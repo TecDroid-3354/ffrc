@@ -3,26 +3,26 @@
 
 #include "encoders/builders/MotorEncoderBuilder.hh"
 #include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
-#include "motorcontrollers/controllers/REV/CANSparkMax.hh"
+#include "motorcontrollers/devices/REV/CANSparkMax.hh"
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders {
 
-            class SparkMaxRelativeEncoder: MotorEncoderBuilder<devices::SparkMaxRelativeEncoder> {
+            class SparkMaxRelativeEncoder: MotorEncoderBuilder<devices::encoders::SparkMaxRelativeEncoder> {
                 public:
-                    SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::MotorController>);
+                    SparkMaxRelativeEncoder(std::shared_ptr<devices::motorcontrollers::MotorController>);
 
                     SparkMaxRelativeEncoder* SetResolution(long double)          override;
                     SparkMaxRelativeEncoder* SetPositionConversionFactor(double) override;
                     SparkMaxRelativeEncoder* StartWithDistance(double)           override;
 
-                    std::shared_ptr<devices::SparkMaxRelativeEncoder> Build();
+                    std::shared_ptr<devices::encoders::SparkMaxRelativeEncoder> Build();
 
                 protected:
-                    std::shared_ptr<motorcontrollers::devices::CANSparkMax> from;
+                    std::shared_ptr<devices::motorcontrollers::CANSparkMax> from;
 
             };
 

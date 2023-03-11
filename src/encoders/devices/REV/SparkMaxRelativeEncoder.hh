@@ -6,9 +6,9 @@
 
 namespace ffrc {
     
-    namespace encoders {
+    namespace devices {
 
-        namespace devices {
+        namespace encoders {
 
             class SparkMaxRelativeEncoder: public MotorEncoder {
                 public:

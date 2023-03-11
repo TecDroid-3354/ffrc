@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace devices {
 
-        namespace devices {
+        namespace motorcontrollers {
 
             VictorSPX::VictorSPX(std::unique_ptr<ctre::phoenix::motorcontrol::can::WPI_VictorSPX> controller):
             controller(std::move(controller)) {}

@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace devices {
 
-        namespace devices {
+        namespace motorcontrollers {
 
             CANSparkMax::CANSparkMax(std::unique_ptr<rev::CANSparkMax> controller):
             controller(std::move(controller)), encoder(std::nullptr_t{}) {}

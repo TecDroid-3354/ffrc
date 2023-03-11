@@ -5,9 +5,9 @@
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders {
 
             template <typename EncoderType>
             class MotorEncoderBuilder {

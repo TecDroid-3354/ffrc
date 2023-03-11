@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders {
 
             AMT103* AMT103::SetResolution(long double resolution) {
                 this -> resolution = resolution;
@@ -53,10 +53,11 @@ namespace ffrc {
                 return this;
             }
 
-            std::shared_ptr<devices::AMT103> AMT103::Build() {
+            std::shared_ptr<devices::encoders::AMT103> AMT103::Build() {
                 std::unique_ptr<frc::Encoder> frcEncoder = std::make_unique<frc::Encoder>(aChannel, bChannel, reverseDirection, encodingType);
 
-                std::shared_ptr<devices::AMT103> amt103 = std::make_shared<devices::AMT103>(std::move(frcEncoder));
+                std::shared_ptr<devices::encoders::AMT103> amt103 =
+                    std::make_shared<devices::encoders::AMT103>(std::move(frcEncoder));
 
                 amt103 -> SetPositionConversionFactor(positionConversionFactor);
                 amt103 -> SetResolution(resolution);

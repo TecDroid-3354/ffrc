@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace devices {
         
-        namespace devices {
+        namespace motorcontrollers {
 
             void MotorController::SetSpeedThreshold(util::Threshold threshold) {
                 this -> speedThreshold = threshold;

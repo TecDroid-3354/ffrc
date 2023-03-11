@@ -9,9 +9,9 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace devices {
         
-        namespace devices {
+        namespace motorcontrollers {
 
             class MotorController {
                 public:
