@@ -4,9 +4,9 @@
 
 namespace ffrc {
     
-    namespace encoders {
+    namespace devices {
 
-        namespace devices {
+        namespace encoders {
 
             class MotorEncoder {
                 public:

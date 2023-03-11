@@ -5,9 +5,9 @@
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders {
 
             namespace AMT103SwitchValues {
                 constexpr double SWITCH_ONE   = 2048.0 / 1000.0;
@@ -16,7 +16,7 @@ namespace ffrc {
                 constexpr double SWITCH_FOUR  = 2048.0 / 512.0;
             }
 
-            class AMT103: public MotorEncoderBuilder<devices::AMT103> {
+            class AMT103: public MotorEncoderBuilder<devices::encoders::AMT103> {
                 public:
                     AMT103* SetResolution(long double)          override;
                     AMT103* SetPositionConversionFactor(double) override;
@@ -29,7 +29,7 @@ namespace ffrc {
 
                     AMT103* SetSwitchConfiguration(bool, bool, bool, bool);
 
-                    std::shared_ptr<devices::AMT103> Build();
+                    std::shared_ptr<devices::encoders::AMT103> Build();
 
                 private:
                     std::unique_ptr<frc::Encoder> encoder;

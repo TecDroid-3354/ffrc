@@ -1,22 +1,22 @@
 #pragma once
 
-#include "motorcontrollers/controllers/MotorController.hh"
+#include "motorcontrollers/devices/MotorController.hh"
 
 #include "util/limits/Threshold.hh"
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace builders {
 
-        namespace builders {
+        namespace motorcontrollers {
 
             template <typename ControllerType>
             class MotorControllerBuilder {
 
-                static_assert(std::is_base_of<devices::MotorController, ControllerType>::value,
+                static_assert(std::is_base_of<devices::motorcontrollers::MotorController, ControllerType>::value,
                     "The ControllerType assigned to a MotorControllerBuilder "
                     "via the template must be a base of "
-                    "ffrc::motorcontrol::controllers::MotorController"
+                    "ffrc::devices::motorcontrollers::MotorController"
                 );
 
                 public:

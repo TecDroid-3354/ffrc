@@ -2,7 +2,7 @@
 #define FFRC_MOTORCONTROLLERS_BUILDERS_CAN_SPARK_MAX_HH
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
-#include "motorcontrollers/controllers/REV/CANSparkMax.hh"
+#include "motorcontrollers/devices/REV/CANSparkMax.hh"
 #include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
 
 #include <rev/CANSparkMax.h>
@@ -12,11 +12,11 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace builders {
 
-        namespace builders {
+        namespace motorcontrollers {
 
-            class CANSparkMax: public CANMotorControllerBuilder<devices::CANSparkMax> {
+            class CANSparkMax: public CANMotorControllerBuilder<devices::motorcontrollers::CANSparkMax> {
                 public:
                     CANSparkMax* SpeedLimitThreshold(util::Threshold) override;
                     CANSparkMax* SpeedOutputMultiplier(double)        override;
@@ -38,7 +38,7 @@ namespace ffrc {
                     CANSparkMax* EnableVoltageCompensation();
                     CANSparkMax* EnableSoftLimit();
 
-                    std::shared_ptr<devices::CANSparkMax> Build();
+                    std::shared_ptr<devices::motorcontrollers::CANSparkMax> Build();
 
                 protected:
                     rev::CANSparkMax::MotorType          motorType          = rev::CANSparkMax::MotorType::kBrushless;

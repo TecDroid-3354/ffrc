@@ -30,13 +30,13 @@ class Robot : public frc::TimedRobot {
  private:
   std::optional<frc2::CommandPtr> m_autonomousCommand;
 
-  std::shared_ptr<ffrc::motorcontrollers::devices::MotorController> controller =
-    ffrc::motorcontrollers::builders::CANSparkMax()
+  std::shared_ptr<ffrc::devices::motorcontrollers::CANSparkMax> controller =
+    ffrc::builders::motorcontrollers::CANSparkMax()
     .Id(3)
     ->Build();
 
-  std::shared_ptr<ffrc::encoders::devices::SparkMaxRelativeEncoder> encoder =
-    ffrc::encoders::builders::SparkMaxRelativeEncoder(controller)
+  std::shared_ptr<ffrc::devices::encoders::SparkMaxRelativeEncoder> encoder =
+    ffrc::builders::encoders::SparkMaxRelativeEncoder(controller)
     .Build();
 
   RobotContainer m_container;

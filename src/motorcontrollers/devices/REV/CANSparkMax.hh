@@ -1,15 +1,15 @@
 #pragma once
 
-#include "motorcontrollers/controllers/MotorController.hh"
+#include "motorcontrollers/devices/MotorController.hh"
 #include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
 
 #include <rev/CANSparkMax.h>
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace builders {
 
-        namespace builders {
+        namespace encoders {
 
             class SparkMaxRelativeEncoder;
 
@@ -17,12 +17,12 @@ namespace ffrc {
 
     }
 
-    namespace motorcontrollers {
+    namespace devices {
 
-        namespace devices {
+        namespace motorcontrollers {
 
             class CANSparkMax: public MotorController {
-                friend encoders::builders::SparkMaxRelativeEncoder;
+                friend builders::encoders::SparkMaxRelativeEncoder;
 
                 public:
                     CANSparkMax(std::unique_ptr<rev::CANSparkMax>);

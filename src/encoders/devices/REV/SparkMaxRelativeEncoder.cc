@@ -2,9 +2,9 @@
 
 namespace ffrc {
     
-    namespace encoders {
+    namespace devices {
 
-        namespace devices {
+        namespace encoders {
 
             SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder):
             encoder(encoder) {}

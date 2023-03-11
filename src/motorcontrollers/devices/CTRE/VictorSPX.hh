@@ -1,14 +1,14 @@
 #pragma once
 
-#include "motorcontrollers/controllers/MotorController.hh"
+#include "motorcontrollers/devices/MotorController.hh"
 
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace devices {
 
-        namespace devices {
+        namespace motorcontrollers {
 
             class VictorSPX: public MotorController {
                 public:

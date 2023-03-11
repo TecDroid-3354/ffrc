@@ -2,17 +2,17 @@
 #define FFRC_MOTORCONTROLLERS_BUILDERS_VICTOR_SPX_HH
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
-#include "motorcontrollers/controllers/CTRE/VictorSPX.hh"
+#include "motorcontrollers/devices/CTRE/VictorSPX.hh"
 
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace builders {
 
-        namespace builders {
+        namespace motorcontrollers {
 
-            class VictorSPX: public CANMotorControllerBuilder<devices::VictorSPX> {
+            class VictorSPX: public CANMotorControllerBuilder<devices::motorcontrollers::VictorSPX> {
                 public:
                     VictorSPX* SpeedLimitThreshold(util::Threshold) override;
                     VictorSPX* SpeedOutputMultiplier(double) override;
@@ -22,7 +22,7 @@ namespace ffrc {
 
                     VictorSPX* ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
 
-                    std::shared_ptr<devices::VictorSPX> Build();
+                    std::shared_ptr<devices::motorcontrollers::VictorSPX> Build();
 
                     private:
                         ctre::phoenix::motorcontrol::VictorSPXControlMode controlMode =

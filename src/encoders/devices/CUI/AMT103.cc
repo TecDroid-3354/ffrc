@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace encoders {
+    namespace devices {
 
-        namespace devices {
+        namespace encoders {
 
             AMT103::AMT103(std::unique_ptr<frc::Encoder> encoder):
             encoder(std::move(encoder)) {}

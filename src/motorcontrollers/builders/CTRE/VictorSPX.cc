@@ -2,9 +2,9 @@
 
 namespace ffrc {
 
-    namespace motorcontrollers {
+    namespace builders {
 
-        namespace builders {
+        namespace motorcontrollers {
 
             VictorSPX* VictorSPX::SpeedLimitThreshold(util::Threshold threshold) {
                 this -> speedLimitThreshold = threshold;
@@ -31,10 +31,12 @@ namespace ffrc {
                 return this;
             }
 
-            std::shared_ptr<devices::VictorSPX> VictorSPX::Build() {
+            std::shared_ptr<devices::motorcontrollers::VictorSPX> VictorSPX::Build() {
                 auto victorspx = std::make_unique<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>(canId);
 
-                std::shared_ptr<devices::VictorSPX> victorspxController = std::make_shared<devices::VictorSPX>(std::move(victorspx));
+                std::shared_ptr<devices::motorcontrollers::VictorSPX> victorspxController =
+                    std::make_shared<devices::motorcontrollers::VictorSPX>(std::move(victorspx));
+
                 victorspxController -> SetInversionState(isInverted);
                 victorspxController -> SetSpeedOutputMultiplier(speedOutputMultiplier);
                 victorspxController -> SetSpeedThreshold(speedLimitThreshold);

@@ -9,7 +9,7 @@ namespace ffrc {
 
         Threshold::Threshold(double lowerBound, double upperBound):
         lowerBound(lowerBound), upperBound(upperBound) {
-            assert(lowerBound < upperBound && "lowerBound is larger than the upperBound");
+            assert(lowerBound < upperBound && "lowerBound is greater than the upperBound");
         }
         
         double ClampValueInThreshold(Threshold& threshold, double value) {
