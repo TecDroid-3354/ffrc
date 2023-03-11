@@ -6,7 +6,7 @@ namespace ffrc {
 
         namespace builders {
 
-            AMT103* AMT103::SetResolution(uint32_t resolution) {
+            AMT103* AMT103::SetResolution(long double resolution) {
                 this -> resolution = resolution;
                 return this;
             }
@@ -22,12 +22,13 @@ namespace ffrc {
             }
 
             AMT103* AMT103::SetSwitchConfiguration(bool a, bool b, bool c, bool d) {
-                this -> resolution = 2048 / (a || b || c || d) ? (
-                    (AMT103SwitchValues::SWITCH_ONE   * a) * //
-                    (AMT103SwitchValues::SWITCH_TWO   * b) * //
-                    (AMT103SwitchValues::SWITCH_THREE * c) * //
-                    (AMT103SwitchValues::SWITCH_FOUR  * d)   //
-                ) : 1;
+                SetResolution(2048 / (
+                        (a ? (AMT103SwitchValues::SWITCH_ONE  ) : 1.0) * //
+                        (b ? (AMT103SwitchValues::SWITCH_TWO  ) : 1.0) * //
+                        (c ? (AMT103SwitchValues::SWITCH_THREE) : 1.0) * //
+                        (d ? (AMT103SwitchValues::SWITCH_FOUR ) : 1.0)   //
+                    )
+                );
 
                 return this;
             }
@@ -53,9 +54,9 @@ namespace ffrc {
             }
 
             std::shared_ptr<devices::AMT103> AMT103::Build() {
-                std::unique_ptr<frc::Encoder> genEncoder = std::make_unique<frc::Encoder>(aChannel, bChannel, reverseDirection, encodingType);
+                std::unique_ptr<frc::Encoder> frcEncoder = std::make_unique<frc::Encoder>(aChannel, bChannel, reverseDirection, encodingType);
 
-                std::shared_ptr<devices::AMT103> amt103 = std::make_shared<devices::AMT103>(std::move(genEncoder));
+                std::shared_ptr<devices::AMT103> amt103 = std::make_shared<devices::AMT103>(std::move(frcEncoder));
 
                 amt103 -> SetPositionConversionFactor(positionConversionFactor);
                 amt103 -> SetResolution(resolution);

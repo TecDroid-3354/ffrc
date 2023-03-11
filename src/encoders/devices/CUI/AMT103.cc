@@ -9,8 +9,9 @@ namespace ffrc {
             AMT103::AMT103(std::unique_ptr<frc::Encoder> encoder):
             encoder(std::move(encoder)) {}
 
-            void AMT103::SetResolution(uint32_t resolution) {
+            void AMT103::SetResolution(long double resolution) {
                 this -> resolution = resolution;
+                this -> encoder -> SetDistancePerPulse(1 / resolution);
             }
 
             double AMT103::GetResolution() {
@@ -19,7 +20,6 @@ namespace ffrc {
 
             void AMT103::SetPositionConversionFactor(double factor) {
                 this -> positionConversionFactor = factor;
-                encoder -> SetDistancePerPulse(factor / resolution);
             }
 
             double AMT103::GetPositionConversionFactor() {
@@ -27,11 +27,11 @@ namespace ffrc {
             }
 
             void AMT103::SetTraveledDistance(double distance) {
-                // Unsupported
+                this -> fakeTraveledDistance = distance;
             }
 
             double AMT103::GetTraveledDistance() {
-                return encoder -> GetDistance();
+                return (encoder -> GetDistance() * positionConversionFactor) + fakeTraveledDistance;
             }
 
             double AMT103::GetVelocity() {
@@ -43,16 +43,17 @@ namespace ffrc {
             }
 
             void AMT103::SetMeasurementPeriod(uint32_t period) {
-                // Unsupported
+                throw std::runtime_error("Cannot modify the measurement period of an AMT103-V");
             }
 
             uint32_t AMT103::GetMeasurementPeriod() {
-                // Unsupported
-                return 0;
+                // Formula in the AMT103-V Datasheet
+                // Mechanical degrees
+                return 360.0 / resolution;
             }
 
             void AMT103::SetSamplesToAverage(int samples) {
-                encoder -> SetSamplesToAverage(samples);
+                this -> encoder -> SetSamplesToAverage(samples);
             }
 
             int AMT103::GetSamplesToAverage() {
@@ -60,7 +61,7 @@ namespace ffrc {
             }
 
             void AMT103::Reset() {
-                encoder -> Reset();
+                this -> encoder -> Reset();
             }
 
         }

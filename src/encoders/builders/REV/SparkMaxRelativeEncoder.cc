@@ -16,7 +16,7 @@ namespace ffrc {
                 this -> from = std::static_pointer_cast<motorcontrollers::devices::CANSparkMax>(from);
             }
 
-            SparkMaxRelativeEncoder* SparkMaxRelativeEncoder::SetResolution(uint32_t resolution) {
+            SparkMaxRelativeEncoder* SparkMaxRelativeEncoder::SetResolution(long double resolution) {
                 this -> resolution = resolution;
                 return this;
             }

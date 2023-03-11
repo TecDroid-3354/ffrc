@@ -18,7 +18,7 @@ namespace ffrc {
 
             class AMT103: public MotorEncoderBuilder<devices::AMT103> {
                 public:
-                    AMT103* SetResolution(uint32_t)             override;
+                    AMT103* SetResolution(long double)          override;
                     AMT103* SetPositionConversionFactor(double) override;
                     AMT103* StartWithDistance(double)           override;
 

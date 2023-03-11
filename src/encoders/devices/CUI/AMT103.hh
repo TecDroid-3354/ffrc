@@ -14,7 +14,7 @@ namespace ffrc {
                 public:
                     AMT103(std::unique_ptr<frc::Encoder>);
 
-                    void     SetResolution(uint32_t)             override;
+                    void     SetResolution(long double)          override;
                     double   GetResolution()                     override;
 
                     void     SetPositionConversionFactor(double) override;
@@ -37,6 +37,7 @@ namespace ffrc {
                 
                 private:
                     std::unique_ptr<frc::Encoder> encoder;
+                    double fakeTraveledDistance = 0;
 
             };
 

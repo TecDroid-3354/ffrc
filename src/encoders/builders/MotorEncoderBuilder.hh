@@ -12,7 +12,7 @@ namespace ffrc {
             template <typename EncoderType>
             class MotorEncoderBuilder {
                 public:
-                    virtual MotorEncoderBuilder* SetResolution(uint32_t)             = 0;
+                    virtual MotorEncoderBuilder* SetResolution(long double)          = 0;
                     virtual MotorEncoderBuilder* SetPositionConversionFactor(double) = 0;
                     virtual MotorEncoderBuilder* StartWithDistance(double)           = 0;
 

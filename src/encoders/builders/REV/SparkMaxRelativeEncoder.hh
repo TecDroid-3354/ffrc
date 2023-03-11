@@ -15,7 +15,7 @@ namespace ffrc {
                 public:
                     SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::MotorController>);
 
-                    SparkMaxRelativeEncoder* SetResolution(uint32_t)             override;
+                    SparkMaxRelativeEncoder* SetResolution(long double)          override;
                     SparkMaxRelativeEncoder* SetPositionConversionFactor(double) override;
                     SparkMaxRelativeEncoder* StartWithDistance(double)           override;
 

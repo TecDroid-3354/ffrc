@@ -10,7 +10,7 @@ namespace ffrc {
 
             class MotorEncoder {
                 public:
-                    virtual void     SetResolution(uint32_t)             = 0;
+                    virtual void     SetResolution(long double)          = 0;
                     virtual double   GetResolution()                     = 0;
 
                     virtual void     SetPositionConversionFactor(double) = 0;
@@ -32,7 +32,7 @@ namespace ffrc {
                     virtual void     Reset()                             = 0;
 
                 protected:
-                    uint32_t resolution = 0;
+                    long double resolution = 0;
                     double positionConversionFactor;
             };
 

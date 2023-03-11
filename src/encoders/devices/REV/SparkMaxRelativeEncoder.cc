@@ -9,8 +9,9 @@ namespace ffrc {
             SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<rev::SparkMaxRelativeEncoder> encoder):
             encoder(encoder) {}
 
-            void SparkMaxRelativeEncoder::SetResolution(uint32_t distance){
+            void SparkMaxRelativeEncoder::SetResolution(long double distance) {
                 // Already Handled by the encoder
+                throw std::runtime_error("Cannot set the resolution of a SparkMaxRelativeEncoder");
             }
 
             double SparkMaxRelativeEncoder::GetResolution() {
@@ -18,8 +19,8 @@ namespace ffrc {
 			}
 
             void SparkMaxRelativeEncoder::SetPositionConversionFactor(double factor) {
-                encoder -> SetPositionConversionFactor(factor);
-                positionConversionFactor = factor;
+                this -> positionConversionFactor = factor;
+                encoder -> SetPositionConversionFactor(positionConversionFactor);
             }
 
             double SparkMaxRelativeEncoder::GetPositionConversionFactor() {
@@ -27,7 +28,7 @@ namespace ffrc {
             }
 
             void SparkMaxRelativeEncoder::SetTraveledDistance(double) {
-                encoder -> SetPosition(0);
+                this -> encoder -> SetPosition(0);
 			}
 
             double SparkMaxRelativeEncoder::GetTraveledDistance() {
@@ -43,7 +44,7 @@ namespace ffrc {
 			}
 
             void SparkMaxRelativeEncoder::SetMeasurementPeriod(uint32_t period) {
-                encoder -> SetMeasurementPeriod(period);
+                this -> encoder -> SetMeasurementPeriod(period);
 			}
 
             uint32_t SparkMaxRelativeEncoder::GetMeasurementPeriod() {
@@ -51,7 +52,7 @@ namespace ffrc {
 			}
 
             void SparkMaxRelativeEncoder::SetSamplesToAverage(int samples) {
-                encoder -> SetAverageDepth(samples);
+                this -> encoder -> SetAverageDepth(samples);
 			}
 
             int SparkMaxRelativeEncoder::GetSamplesToAverage() {
@@ -59,7 +60,7 @@ namespace ffrc {
 			}
 
             void SparkMaxRelativeEncoder::Reset() {
-                encoder -> SetPosition(0);
+                this -> encoder -> SetPosition(0);
 			}
 
         }

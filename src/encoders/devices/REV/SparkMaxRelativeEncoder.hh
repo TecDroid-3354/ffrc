@@ -14,7 +14,7 @@ namespace ffrc {
                 public:
                     SparkMaxRelativeEncoder(std::shared_ptr<rev::SparkMaxRelativeEncoder>);
 
-                    void     SetResolution(uint32_t)             override;
+                    void     SetResolution(long double)          override;
                     double   GetResolution()                     override;
 
                     void     SetPositionConversionFactor(double) override;
