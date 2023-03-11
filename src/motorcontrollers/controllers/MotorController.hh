@@ -9,25 +9,22 @@
 
 namespace ffrc {
 
-    namespace motorcontrol {
+    namespace motorcontrollers {
         
-        namespace controllers {
+        namespace devices {
 
             class MotorController {
                 public:
+                    virtual void    SetMotorSpeed(double)                    = 0;
+                    virtual void    SetOutputVoltage(units::voltage::volt_t) = 0;
+                    virtual double  GetMotorSpeed()                          = 0;
 
-                    MotorController(std::unique_ptr<frc::MotorController>);
+                    virtual void    StopMotor()                              = 0;
+                    virtual void    DisableMotor()                           = 0;
 
-                    void   SetMotorSpeed(double);
-                    void   SetOutputVoltage(units::voltage::volt_t);
-                    double GetMotorSpeed();
-
-                    void   StopMotor();
-                    void   DisableMotor();
-
-                    void   SetInversionState(bool isInverted);
-                    void   Invert();
-                    bool   GetInversionState();
+                    virtual void    SetInversionState(bool isInverted)       = 0;
+                    virtual void    Invert()                                 = 0;
+                    virtual bool    GetInversionState()                      = 0;
 
                     void            SetSpeedThreshold(util::Threshold);
                     util::Threshold GetSpeedThreshold();
@@ -36,12 +33,13 @@ namespace ffrc {
                     double          GetSpeedOutputMultiplier();
 
                 protected:
-                    std::unique_ptr<frc::MotorController> controller;
+                    double          speedOutputMultiplier = 1.0;
+                    util::Threshold speedThreshold        = util::Threshold(-1.0, 1.0);
 
-                    double speedOutputMultiplier = 1.0;
-                    util::Threshold speedThreshold = util::Threshold(-1.0, 1.0);
             };
 
         }
+
     }
+
 }

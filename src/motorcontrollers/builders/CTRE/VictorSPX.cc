@@ -2,44 +2,44 @@
 
 namespace ffrc {
 
-    namespace motorcontrol {
+    namespace motorcontrollers {
 
         namespace builders {
 
-            VictorSPXBuilder& VictorSPXBuilder::SpeedLimitThreshold(util::Threshold threshold) {
+            VictorSPX* VictorSPX::SpeedLimitThreshold(util::Threshold threshold) {
                 this -> speedLimitThreshold = threshold;
-                return *this;
+                return this;
             }
 
-            VictorSPXBuilder& VictorSPXBuilder::SpeedOutputMultiplier(double multiplier) {
+            VictorSPX* VictorSPX::SpeedOutputMultiplier(double multiplier) {
                 this -> speedOutputMultiplier = multiplier;
-                return *this;
+                return this;
             }
 
-            VictorSPXBuilder& VictorSPXBuilder::Invert() {
+            VictorSPX* VictorSPX::Invert() {
                 this -> isInverted = true;
-                return *this;
+                return this;
             }
 
-            VictorSPXBuilder& VictorSPXBuilder::Id(int id) {
+            VictorSPX* VictorSPX::Id(int id) {
                 this -> canId = id;
-                return *this;
+                return this;
             }
 
-            VictorSPXBuilder& VictorSPXBuilder::ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode mode) {
+            VictorSPX* VictorSPX::ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode mode) {
                 this -> controlMode = mode;
-                return *this;
+                return this;
             }
 
-            controllers::VictorSPX VictorSPXBuilder::Build() {
+            std::shared_ptr<devices::VictorSPX> VictorSPX::Build() {
                 auto victorspx = std::make_unique<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>(canId);
 
-                controllers::VictorSPX victorspxController{std::move(victorspx)};
-                victorspxController.SetInversionState(isInverted);
-                victorspxController.SetSpeedOutputMultiplier(speedOutputMultiplier);
-                victorspxController.SetSpeedThreshold(speedLimitThreshold);
+                std::shared_ptr<devices::VictorSPX> victorspxController = std::make_shared<devices::VictorSPX>(std::move(victorspx));
+                victorspxController -> SetInversionState(isInverted);
+                victorspxController -> SetSpeedOutputMultiplier(speedOutputMultiplier);
+                victorspxController -> SetSpeedThreshold(speedLimitThreshold);
 
-                victorspxController.SetControlMode(controlMode);
+                victorspxController -> SetControlMode(controlMode);
 
                 return victorspxController;
             }

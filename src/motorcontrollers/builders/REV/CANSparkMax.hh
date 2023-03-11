@@ -3,6 +3,7 @@
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
 #include "motorcontrollers/controllers/REV/CANSparkMax.hh"
+#include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
 
 #include <rev/CANSparkMax.h>
 
@@ -11,34 +12,33 @@
 
 namespace ffrc {
 
-    namespace motorcontrol {
+    namespace motorcontrollers {
 
         namespace builders {
 
-            class CANSparkMaxBuilder: public CANMotorControllerBuilder<controllers::CANSparkMax, rev::CANSparkMax> {
+            class CANSparkMax: public CANMotorControllerBuilder<devices::CANSparkMax> {
                 public:
-                    CANSparkMaxBuilder& SpeedLimitThreshold(util::Threshold);
-                    CANSparkMaxBuilder& SpeedOutputMultiplier(double);
-                    CANSparkMaxBuilder& Invert();
+                    CANSparkMax* SpeedLimitThreshold(util::Threshold) override;
+                    CANSparkMax* SpeedOutputMultiplier(double)        override;
+                    CANSparkMax* Invert()                             override;
 
-                    CANSparkMaxBuilder& Id(int);
+                    CANSparkMax* Id(int)                              override;
 
-                    CANSparkMaxBuilder& MotorType(rev::CANSparkMax::MotorType);
-                    CANSparkMaxBuilder& CurrentLimit(units::current::ampere_t);
-                    CANSparkMaxBuilder& IdleMode(rev::CANSparkMax::IdleMode);
-                    CANSparkMaxBuilder& OpenLoopRampRate(units::time::second_t);
-                    CANSparkMaxBuilder& ClosedLoopRampRate(units::time::second_t);
-                    CANSparkMaxBuilder& FollowOther(std::shared_ptr<rev::CANSparkMax>, bool = false);
-                    CANSparkMaxBuilder& FollowExternal(std::shared_ptr<rev::CANSparkMax::ExternalFollower>, int, bool = false);
-                    CANSparkMaxBuilder& CANTimeout(units::time::millisecond_t);
-                    CANSparkMaxBuilder& SoftLimit(rev::CANSparkMax::SoftLimitDirection, double);
-                    CANSparkMaxBuilder& VoltageCompensation(units::voltage::volt_t);
+                    CANSparkMax* MotorType(rev::CANSparkMax::MotorType);
+                    CANSparkMax* CurrentLimit(units::current::ampere_t);
+                    CANSparkMax* IdleMode(rev::CANSparkMax::IdleMode);
+                    CANSparkMax* OpenLoopRampRate(units::time::second_t);
+                    CANSparkMax* ClosedLoopRampRate(units::time::second_t);
+                    CANSparkMax* FollowOther(std::shared_ptr<rev::CANSparkMax>, bool = false);
+                    CANSparkMax* FollowExternal(std::shared_ptr<rev::CANSparkMax::ExternalFollower>, int, bool = false);
+                    CANSparkMax* CANTimeout(units::time::millisecond_t);
+                    CANSparkMax* SoftLimit(rev::CANSparkMax::SoftLimitDirection, double);
+                    CANSparkMax* VoltageCompensation(units::voltage::volt_t);
 
-                    CANSparkMaxBuilder& EnableVoltageCompensation();
-                    CANSparkMaxBuilder& EnableSoftLimit();
+                    CANSparkMax* EnableVoltageCompensation();
+                    CANSparkMax* EnableSoftLimit();
 
-
-                    controllers::CANSparkMax Build() override;
+                    std::shared_ptr<devices::CANSparkMax> Build();
 
                 protected:
                     rev::CANSparkMax::MotorType          motorType          = rev::CANSparkMax::MotorType::kBrushless;
@@ -54,11 +54,13 @@ namespace ffrc {
                     units::voltage::volt_t     voltageCompensation = 0_V;
                     units::current::ampere_t   currentLimit        = 60_A;
                     units::time::millisecond_t canTimeout          = 0_ms;
+
                     double softLimit = 0.0;
 
                     bool enableVoltageCompensation = false;
                     bool enableSoftLimit           = false;
-                    bool reverseFollowTarget     = false;
+                    bool reverseFollowTarget       = false;
+
 
             };
 

@@ -2,94 +2,94 @@
 
 namespace ffrc {
 
-    namespace motorcontrol {
+    namespace motorcontrollers {
 
         namespace builders {
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::SpeedLimitThreshold(util::Threshold threshold) {
+            CANSparkMax* CANSparkMax::SpeedLimitThreshold(util::Threshold threshold) {
                 this -> speedLimitThreshold = threshold;
-                return *this;
+                return this;
             }
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::SpeedOutputMultiplier(double multiplier) {
+            CANSparkMax* CANSparkMax::SpeedOutputMultiplier(double multiplier) {
                 this -> speedOutputMultiplier = multiplier;
-                return *this;
+                return this;
             }
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::Invert() {
+            CANSparkMax* CANSparkMax::Invert() {
                 this -> isInverted = true;
-                return *this;
+                return this;
             }
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::Id(int id) {
+            CANSparkMax* CANSparkMax::Id(int id) {
                 this -> canId = id;
-                return *this;
+                return this;
             }
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::MotorType(rev::CANSparkMax::MotorType type) {
+            CANSparkMax* CANSparkMax::MotorType(rev::CANSparkMax::MotorType type) {
                 this -> motorType = type;
-                return *this;
+                return this;
             }
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::CurrentLimit(units::current::ampere_t limit) {
+            CANSparkMax* CANSparkMax::CurrentLimit(units::current::ampere_t limit) {
                 this -> currentLimit = limit;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::IdleMode(rev::CANSparkMax::IdleMode mode) {
+            CANSparkMax* CANSparkMax::IdleMode(rev::CANSparkMax::IdleMode mode) {
                 this -> idleMode = mode;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::OpenLoopRampRate(units::time::second_t rate) {
+            CANSparkMax* CANSparkMax::OpenLoopRampRate(units::time::second_t rate) {
                 this -> openLoopRampRate = rate;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::ClosedLoopRampRate(units::time::second_t rate) {
+            CANSparkMax* CANSparkMax::ClosedLoopRampRate(units::time::second_t rate) {
                 this -> closedLoopRampRate = rate;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::FollowOther(std::shared_ptr<rev::CANSparkMax> other, bool inverted) {
+            CANSparkMax* CANSparkMax::FollowOther(std::shared_ptr<rev::CANSparkMax> other, bool inverted) {
                 this -> followOther = other;
                 this -> reverseFollowTarget = inverted;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::FollowExternal(std::shared_ptr<rev::CANSparkMax::ExternalFollower> other, int id, bool inverted) {
+            CANSparkMax* CANSparkMax::FollowExternal(std::shared_ptr<rev::CANSparkMax::ExternalFollower> other, int id, bool inverted) {
                 this -> followObj = other;
                 this -> reverseFollowTarget = inverted;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::CANTimeout(units::time::millisecond_t timeout) {
+            CANSparkMax* CANSparkMax::CANTimeout(units::time::millisecond_t timeout) {
                 this -> canTimeout = timeout;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::SoftLimit(rev::CANSparkMax::SoftLimitDirection direction, double limit) {
+            CANSparkMax* CANSparkMax::SoftLimit(rev::CANSparkMax::SoftLimitDirection direction, double limit) {
                 this -> softLimitDirection = direction;
                 this -> softLimit = limit;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::VoltageCompensation(units::voltage::volt_t compensation) {
+            CANSparkMax* CANSparkMax::VoltageCompensation(units::voltage::volt_t compensation) {
                 this -> voltageCompensation = compensation;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::EnableVoltageCompensation() {
+            CANSparkMax* CANSparkMax::EnableVoltageCompensation() {
                 this -> enableVoltageCompensation = true;
-				return *this;
+				return this;
 			}
 
-            CANSparkMaxBuilder& CANSparkMaxBuilder::EnableSoftLimit() {
+            CANSparkMax* CANSparkMax::EnableSoftLimit() {
                 this -> enableSoftLimit = true;
-				return *this;
+				return this;
 			}
 
-            controllers::CANSparkMax CANSparkMaxBuilder::Build() {
+            std::shared_ptr<devices::CANSparkMax> CANSparkMax::Build() {
                 std::unique_ptr<rev::CANSparkMax> spark = std::make_unique<rev::CANSparkMax>(canId, motorType);
 
                 spark -> SetSmartCurrentLimit(currentLimit.value());
@@ -103,20 +103,23 @@ namespace ffrc {
 
                 spark -> EnableSoftLimit(softLimitDirection, enableSoftLimit);
 
+                spark -> SetInverted(isInverted);
+
                 if (enableVoltageCompensation) {
                     spark -> EnableVoltageCompensation(voltageCompensation.value());
                 }
 
-                if (followOther != nullptr) {
+                if (followOther.get() != nullptr) {
                     spark -> Follow(*followOther.get(), reverseFollowTarget);
-                } else if (followObj != nullptr) {
+
+                } else if (followObj.get() != nullptr) {
                     spark -> Follow(*followObj.get(), reverseFollowTarget);
+
                 }
 
-                controllers::CANSparkMax sparkController{std::move(spark)};
-                sparkController.SetInversionState(isInverted);
-                sparkController.SetSpeedOutputMultiplier(speedOutputMultiplier);
-                sparkController.SetSpeedThreshold(speedLimitThreshold);
+                std::shared_ptr<devices::CANSparkMax> sparkController = std::make_shared<devices::CANSparkMax>(std::move(spark));
+                sparkController -> SetSpeedOutputMultiplier(speedOutputMultiplier);
+                sparkController -> SetSpeedThreshold(speedLimitThreshold);
 
                 return sparkController;
             }
