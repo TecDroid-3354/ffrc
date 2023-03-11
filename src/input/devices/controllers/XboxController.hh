@@ -11,7 +11,7 @@ namespace ffrc {
 
             class XboxController {
                 public:
-                    XboxController(unsigned int port);
+                    XboxController(int port);
 
                     double LeftXAxis();
                     double LeftYAxis();

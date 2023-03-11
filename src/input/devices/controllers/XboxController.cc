@@ -6,7 +6,7 @@ namespace ffrc {
 
         namespace input {
 
-            XboxController::XboxController(unsigned int port):
+            XboxController::XboxController(int port):
             controller{port} {}
 
             double XboxController::LeftXAxis() {
