@@ -7,6 +7,9 @@
 
 #include "RobotContainer.hh"
 
+#include "motorcontrollers/builders/REV/CANSparkMax.hh"
+#include "encoders/builders/REV/SparkMaxRelativeEncoder.hh"
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
@@ -26,6 +29,15 @@ class Robot : public frc::TimedRobot {
 
  private:
   std::optional<frc2::CommandPtr> m_autonomousCommand;
+
+  std::shared_ptr<ffrc::motorcontrollers::devices::MotorController> controller =
+    ffrc::motorcontrollers::builders::CANSparkMax()
+    .Id(3)
+    ->Build();
+
+  std::shared_ptr<ffrc::encoders::devices::SparkMaxRelativeEncoder> encoder =
+    ffrc::encoders::builders::SparkMaxRelativeEncoder(controller)
+    .Build();
 
   RobotContainer m_container;
 };

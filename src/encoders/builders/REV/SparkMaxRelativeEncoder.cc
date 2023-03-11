@@ -8,8 +8,13 @@ namespace ffrc {
 
         namespace builders {
 
-            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::CANSparkMax> from):
-            from(from) {}
+            SparkMaxRelativeEncoder::SparkMaxRelativeEncoder(std::shared_ptr<motorcontrollers::devices::MotorController> from) {
+                static_assert(std::is_same<Type, devices::SparkMaxRelativeEncoder>::value,
+                    "The MotorController passed in must be a SparkMax."
+                );
+
+                this -> from = std::static_pointer_cast<motorcontrollers::devices::CANSparkMax>(from);
+            }
 
             SparkMaxRelativeEncoder* SparkMaxRelativeEncoder::SetResolution(uint32_t resolution) {
                 this -> resolution = resolution;
