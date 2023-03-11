@@ -56,6 +56,36 @@ namespace ffrc {
 
                     int    GetPov();
 
+                    void   SetLeftXSensitivity(double);
+                    void   SetLeftYSensitivity(double);
+
+                    void   SetRightXSensitivity(double);
+                    void   SetRightYSensitivity(double);
+                    
+                    void   SetRightTriggerSensitivity(double);
+                    void   SetLeftTriggerSensitivity(double);
+
+                    void   SetLeftXMinRequirement(double);
+                    void   SetLeftYMinRequirement(double);
+
+                    void   SetRightXMinRequirement(double);
+                    void   SetRightYMinRequirement(double);
+
+                    void   SetRightTriggerMinRequirement(double);
+                    void   SetLeftTriggerMinRequirement(double);
+
+                    void   SetLeftXInversionState(bool);
+                    void   SetLeftYInversionState(bool);
+
+                    void   SetRightXInversionState(bool);
+                    void   SetRightYInversionState(bool);
+
+                    void   SetRightTriggerInversionState(bool);
+                    void   SetLeftTriggerInversionState(bool);
+
+                    void   SetLeftTriggerOppositeOutputState(bool);
+                    void   SetRightTriggerOppositeOutputState(bool);
+
                     void   SetLeftXThreshold(util::Threshold);
                     void   SetLeftYThreshold(util::Threshold);
                     void   SetLeftAxisThresholds(util::Threshold x);
@@ -70,6 +100,34 @@ namespace ffrc {
 
                 private:
                     frc::XboxController controller;
+
+                    double leftXSensitivity  = 1.0;
+                    double leftYSensitivity  = 1.0;
+                    double rightXSensitivity = 1.0;
+                    double rightYSensitivity = 1.0;
+
+                    double leftTriggerSensitivity = 1.0;
+                    double rightTriggerSensitivity = 1.0;
+
+                    double minRequiredLeftXValue = 0.0;
+                    double minRequiredLeftYValue = 0.0;
+                    double minRequiredRightXValue = 0.0; 
+                    double minRequiredRightYValue = 0.0;
+
+                    double minRequiredLeftTriggerValue  = 0.0;
+                    double minRequiredRightTriggerValue = 0.0;
+
+                    char leftXInversionMultiplier = 1;
+                    char leftYInversionMultiplier = 1;
+
+                    char rightXInversionMultiplier = 1;
+                    char rightYInversionMultiplier = 1;
+
+                    char rightTriggerInversionMultiplier = 1;
+                    char leftTriggerInversionMultiplier  = 1;
+
+                    bool leftTriggerOppositeOutput  = false;
+                    bool rightTriggerOpppsiteOutput = false;
 
                     util::Threshold  leftXThreshold{-1.0, 1.0};
                     util::Threshold  leftYThreshold{-1.0, 1.0};
