@@ -23,6 +23,7 @@ namespace ffrc {
 
             PIDController* PIDController::Tolerance(double value) {
                 this -> tolerance = value;
+                return this;
             }
 
             PIDController* PIDController::ClampThreshold(util::Threshold value) {
