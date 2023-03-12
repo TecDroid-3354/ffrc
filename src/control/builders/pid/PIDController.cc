@@ -21,6 +21,10 @@ namespace ffrc {
             	return this;
 			}
 
+            PIDController* PIDController::Tolerance(double value) {
+                this -> tolerance = value;
+            }
+
             PIDController* PIDController::ClampThreshold(util::Threshold value) {
                 this -> clampThreshold = value;
             	return this;
@@ -49,6 +53,8 @@ namespace ffrc {
             std::shared_ptr<systems::pid::PIDController> PIDController::Build() {
                 std::unique_ptr<frc2::PIDController> controllerimpl = std::make_unique<frc2::PIDController>(p, i, d);  
                 std::shared_ptr<systems::pid::PIDController> controller = std::make_shared<systems::pid::PIDController>(std::move(controllerimpl));
+
+                controller -> SetTolerance(tolerance);
 
                 controller -> SetOutputFeedAction(onFeedOutput);
                 controller -> SetInputReadAction(onReadInput);

@@ -14,6 +14,8 @@ namespace ffrc {
                     PIDController* I(double);
                     PIDController* D(double);
 
+                    PIDController* Tolerance(double);
+
                     PIDController* ClampThreshold(util::Threshold);
                     PIDController* ContinuousOutputRange(util::Threshold);
                     PIDController* WithContinuousOutputRange();
@@ -27,6 +29,8 @@ namespace ffrc {
                     double p = 0.0,
                            i = 0.0,
                            d = 0.0;
+
+                    double tolerance = 0.01;
 
                     bool enableCIR = false;
 

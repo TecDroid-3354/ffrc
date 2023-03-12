@@ -69,7 +69,7 @@ namespace ffrc {
             }
 
             void PIDController::Update() {
-                output = onReadInput();
+                output = controller -> Calculate(onReadInput());
             }
 
             void PIDController::FeedOutput() {
