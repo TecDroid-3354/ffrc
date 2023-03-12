@@ -32,8 +32,8 @@ void Robot::TestExit() {}
 
 #ifndef RUNNING_FRC_TESTS
 
-int main() {
-	return frc::StartRobot<Robot>();
-}
+    int main() {
+        return frc::StartRobot<Robot>();
+    }
 
 #endif
