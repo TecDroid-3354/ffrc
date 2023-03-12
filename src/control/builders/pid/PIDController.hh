@@ -37,7 +37,7 @@ namespace ffrc {
                     std::function<void(double)> onFeedOutput = [] (double output) {             };
                     std::function<double()> onReadInput =      [] (             ) { return 0.0; };
 
-                    util::Threshold clampThreshold{-1.0, 1.0};
+                    util::Threshold clampThreshold{DBL_MIN, DBL_MAX};
                     util::Threshold CIR{0.0, 1.0};
 
 

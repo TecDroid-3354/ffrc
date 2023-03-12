@@ -2,6 +2,7 @@
 
 #include <frc/controller/PIDController.h>
 #include <functional>
+#include <float.h>
 
 #include "util/limits/Threshold.hh"
 
@@ -40,7 +41,7 @@ namespace ffrc {
 
                 private:
                     std::unique_ptr<frc2::PIDController> controller;
-                    util::Threshold clampThreshold{-1.0, 1.0};
+                    util::Threshold clampThreshold{DBL_MIN, DBL_MAX};
                     util::Threshold continuousInputRange{0.0, 1.0};
 
                     std::function<double()> onReadInput      = [] (             ) { return 0.0; };

@@ -69,7 +69,7 @@ namespace ffrc {
             }
 
             void PIDController::Update() {
-                output = controller -> Calculate(onReadInput());
+                output = util::ClampValueInThreshold(clampThreshold, controller -> Calculate(onReadInput()));
             }
 
             void PIDController::FeedOutput() {
