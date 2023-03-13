@@ -27,16 +27,18 @@ namespace ffrc {
                 public:
                     CANSparkMax(std::unique_ptr<rev::CANSparkMax>);
 
-                    void    SetMotorSpeed(double)                    override;
-                    void    SetOutputVoltage(units::voltage::volt_t) override;
-                    double  GetMotorSpeed()                          override;
+                    void   SetMotorSpeed(double)                    override;
+                    void   SetOutputVoltage(units::voltage::volt_t) override;
+                    double GetMotorSpeed()                          override;
 
-                    void    StopMotor()                              override;
-                    void    DisableMotor()                           override;
+                    void   StopMotor()                              override;
+                    void   DisableMotor()                           override;
 
-                    void    SetInversionState(bool isInverted)       override;
-                    void    Invert()                                 override;
-                    bool    GetInversionState()                      override;
+                    void   SetInversionState(bool isInverted)       override;
+                    void   Invert()                                 override;
+                    bool   GetInversionState()                      override;
+
+                    frc::MotorController* GetImplementation()        override;
 
                 private:
                     std::unique_ptr<rev::CANSparkMax> controller;

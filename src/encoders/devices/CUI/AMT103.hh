@@ -10,7 +10,7 @@ namespace ffrc {
 
         namespace encoders {
 
-            class AMT103: MotorEncoder {
+            class AMT103: public MotorEncoder {
                 public:
                     AMT103(std::unique_ptr<frc::Encoder>);
 

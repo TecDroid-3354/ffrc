@@ -51,21 +51,21 @@ namespace ffrc {
             	return this;
 			}
 
-            std::shared_ptr<systems::pid::PIDController> PIDController::Build() {
+            systems::pid::PIDController PIDController::Build() {
                 std::unique_ptr<frc2::PIDController> controllerimpl = std::make_unique<frc2::PIDController>(p, i, d);  
-                std::shared_ptr<systems::pid::PIDController> controller = std::make_shared<systems::pid::PIDController>(std::move(controllerimpl));
+                systems::pid::PIDController controller{std::move(controllerimpl)};
 
-                controller -> SetTolerance(tolerance);
+                controller.SetTolerance(tolerance);
 
-                controller -> SetOutputFeedAction(onFeedOutput);
-                controller -> SetInputReadAction(onReadInput);
+                controller.SetOutputFeedAction(onFeedOutput);
+                controller.SetInputReadAction(onReadInput);
 
-                controller -> SetClampThreshold(clampThreshold);
+                controller.SetClampThreshold(clampThreshold);
 
-                controller -> SetContinuousInputRange(CIR);
+                controller.SetContinuousInputRange(CIR);
 
                 if (enableCIR) {
-                    controller -> EnableContinuousInputRange();
+                    controller.EnableContinuousInputRange();
                 }
 
                 return controller;

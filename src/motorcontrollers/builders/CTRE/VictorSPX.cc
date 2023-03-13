@@ -31,17 +31,16 @@ namespace ffrc {
                 return this;
             }
 
-            std::shared_ptr<devices::motorcontrollers::VictorSPX> VictorSPX::Build() {
+            devices::motorcontrollers::VictorSPX VictorSPX::Build() {
                 auto victorspx = std::make_unique<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>(canId);
 
-                std::shared_ptr<devices::motorcontrollers::VictorSPX> victorspxController =
-                    std::make_shared<devices::motorcontrollers::VictorSPX>(std::move(victorspx));
+                devices::motorcontrollers::VictorSPX victorspxController{std::move(victorspx)};
 
-                victorspxController -> SetInversionState(isInverted);
-                victorspxController -> SetSpeedOutputMultiplier(speedOutputMultiplier);
-                victorspxController -> SetSpeedThreshold(speedLimitThreshold);
+                victorspxController.SetInversionState(isInverted);
+                victorspxController.SetSpeedOutputMultiplier(speedOutputMultiplier);
+                victorspxController.SetSpeedThreshold(speedLimitThreshold);
 
-                victorspxController -> SetControlMode(controlMode);
+                victorspxController.SetControlMode(controlMode);
 
                 return victorspxController;
             }

@@ -45,6 +45,10 @@ namespace ffrc {
                 this -> controlMode = mode;
             }
 
+            frc::MotorController* VictorSPX::GetImplementation() {
+                return controller.get();
+            }
+
         }
 
     }

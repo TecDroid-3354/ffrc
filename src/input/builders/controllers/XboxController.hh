@@ -53,7 +53,7 @@ namespace ffrc {
                     XboxController* LeftTriggerThreshold(util::Threshold);
                     XboxController* RightTriggerThreshold(util::Threshold);
 
-                    std::shared_ptr<devices::input::XboxController> Build();
+                    devices::input::XboxController Build();
 
                 private:
                     int port = 0;
@@ -93,7 +93,6 @@ namespace ffrc {
 
                     util::Threshold leftTriggerThreshold{-1.0, 1.0};
                     util::Threshold rightTriggerThreshold{-1.0, 1.0};
-
             };
         }
     }
