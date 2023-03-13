@@ -53,15 +53,14 @@ namespace ffrc {
                 return this;
             }
 
-            std::shared_ptr<devices::encoders::AMT103> AMT103::Build() {
+            devices::encoders::AMT103 AMT103::Build() {
                 std::unique_ptr<frc::Encoder> frcEncoder = std::make_unique<frc::Encoder>(aChannel, bChannel, reverseDirection, encodingType);
 
-                std::shared_ptr<devices::encoders::AMT103> amt103 =
-                    std::make_shared<devices::encoders::AMT103>(std::move(frcEncoder));
+                devices::encoders::AMT103 amt103(std::move(frcEncoder));
 
-                amt103 -> SetPositionConversionFactor(positionConversionFactor);
-                amt103 -> SetResolution(resolution);
-                amt103 -> SetTraveledDistance(startingDistance);
+                amt103.SetPositionConversionFactor(positionConversionFactor);
+                amt103.SetResolution(resolution);
+                amt103.SetTraveledDistance(startingDistance);
 
                 return amt103;
             }

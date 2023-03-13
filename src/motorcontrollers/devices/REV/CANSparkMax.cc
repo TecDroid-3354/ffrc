@@ -49,6 +49,10 @@ namespace ffrc {
                 return encoder;
             }
 
+            frc::MotorController* CANSparkMax::GetImplementation() {
+                return controller.get();
+            }
+
         }
 
     }

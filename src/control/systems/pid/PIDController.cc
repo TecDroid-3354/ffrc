@@ -75,6 +75,16 @@ namespace ffrc {
             void PIDController::FeedOutput() {
                 onFeedOutput(output);
             }
+
+            void PIDController::UpdateAndFeed() {
+                output = util::ClampValueInThreshold(clampThreshold, controller -> Calculate(onReadInput()));
+                onFeedOutput(output);
+            }
+
+            double PIDController::GetLastOutput() {
+               return this -> output;
+            }
+
         }
 
     }

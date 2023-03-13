@@ -16,8 +16,6 @@ namespace ffrc {
                     virtual MotorEncoderBuilder* SetPositionConversionFactor(double) = 0;
                     virtual MotorEncoderBuilder* StartWithDistance(double)           = 0;
 
-                    using Type = EncoderType;
-
                 protected:
                     uint32_t resolution = 2048;
                     double positionConversionFactor = 1.0;

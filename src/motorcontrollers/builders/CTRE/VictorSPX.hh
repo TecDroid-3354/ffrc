@@ -22,7 +22,7 @@ namespace ffrc {
 
                     VictorSPX* ControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
 
-                    std::shared_ptr<devices::motorcontrollers::VictorSPX> Build();
+                    devices::motorcontrollers::VictorSPX Build();
 
                     private:
                         ctre::phoenix::motorcontrol::VictorSPXControlMode controlMode =

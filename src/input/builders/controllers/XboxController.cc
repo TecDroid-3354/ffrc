@@ -143,47 +143,47 @@ namespace ffrc {
             	return this;
 			}
 
-            std::shared_ptr<devices::input::XboxController> XboxController::Build() {
-                std::shared_ptr<devices::input::XboxController> controller = std::make_shared<devices::input::XboxController>(port);
+            devices::input::XboxController XboxController::Build() {
+                devices::input::XboxController controller{port};
 
-                controller -> SetLeftXSensitivity(leftXSensitivity);
-                controller -> SetLeftYSensitivity(leftYSensitivity);
+                controller.SetLeftXSensitivity(leftXSensitivity);
+                controller.SetLeftYSensitivity(leftYSensitivity);
 
-                controller -> SetRightXSensitivity(rightXSensitivity);
-                controller -> SetRightYSensitivity(rightYSensitivity);
+                controller.SetRightXSensitivity(rightXSensitivity);
+                controller.SetRightYSensitivity(rightYSensitivity);
                 
-                controller -> SetRightTriggerSensitivity(rightTriggerSensitivity);
-                controller -> SetLeftTriggerSensitivity(leftTriggerSensitivity);
+                controller.SetRightTriggerSensitivity(rightTriggerSensitivity);
+                controller.SetLeftTriggerSensitivity(leftTriggerSensitivity);
 
-                controller -> SetLeftXMinRequirement(minRequiredLeftXValue);
-                controller -> SetLeftYMinRequirement(minRequiredLeftYValue);
+                controller.SetLeftXMinRequirement(minRequiredLeftXValue);
+                controller.SetLeftYMinRequirement(minRequiredLeftYValue);
 
-                controller -> SetRightXMinRequirement(minRequiredRightXValue);
-                controller -> SetRightYMinRequirement(minRequiredRightYValue);
+                controller.SetRightXMinRequirement(minRequiredRightXValue);
+                controller.SetRightYMinRequirement(minRequiredRightYValue);
 
-                controller -> SetLeftTriggerMinRequirement(minRequiredLeftTriggerValue);
-                controller -> SetRightTriggerMinRequirement(minRequiredRightTriggerValue);
+                controller.SetLeftTriggerMinRequirement(minRequiredLeftTriggerValue);
+                controller.SetRightTriggerMinRequirement(minRequiredRightTriggerValue);
 
-                controller -> SetLeftXInversionState(leftXInverted);
-                controller -> SetLeftYInversionState(leftYInverted);
+                controller.SetLeftXInversionState(leftXInverted);
+                controller.SetLeftYInversionState(leftYInverted);
 
-                controller -> SetRightXInversionState(rightXInverted);
-                controller -> SetRightYInversionState(rightYInverted);
+                controller.SetRightXInversionState(rightXInverted);
+                controller.SetRightYInversionState(rightYInverted);
 
-                controller -> SetLeftTriggerInversionState(leftTriggerInverted);
-                controller -> SetRightTriggerInversionState(rightTriggerInverted);
+                controller.SetLeftTriggerInversionState(leftTriggerInverted);
+                controller.SetRightTriggerInversionState(rightTriggerInverted);
 
-                controller -> SetLeftTriggerOppositeOutputState(leftTriggerOppositeOutput);
-                controller -> SetRightTriggerOppositeOutputState(rightTriggerOpppsiteOutput);
+                controller.SetLeftTriggerOppositeOutputState(leftTriggerOppositeOutput);
+                controller.SetRightTriggerOppositeOutputState(rightTriggerOpppsiteOutput);
 
-                controller -> SetLeftXThreshold(leftXThreshold);
-                controller -> SetLeftYThreshold(leftYThreshold);
+                controller.SetLeftXThreshold(leftXThreshold);
+                controller.SetLeftYThreshold(leftYThreshold);
 
-                controller -> SetRightXThreshold(rightXThreshold);
-                controller -> SetRightYThreshold(rightYThreshold);
+                controller.SetRightXThreshold(rightXThreshold);
+                controller.SetRightYThreshold(rightYThreshold);
 
-                controller -> SetLeftTriggerThreshold(leftTriggerThreshold);
-                controller -> SetRightTriggerThreshold(rightTriggerThreshold);
+                controller.SetLeftTriggerThreshold(leftTriggerThreshold);
+                controller.SetRightTriggerThreshold(rightTriggerThreshold);
 
                 return controller;
             }

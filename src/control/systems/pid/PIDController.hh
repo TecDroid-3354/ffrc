@@ -38,6 +38,9 @@ namespace ffrc {
 
                     void   Update();
                     void   FeedOutput();
+                    void   UpdateAndFeed();
+
+                    double GetLastOutput();
 
                 private:
                     std::unique_ptr<frc2::PIDController> controller;

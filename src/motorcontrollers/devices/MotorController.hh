@@ -32,6 +32,8 @@ namespace ffrc {
                     void            SetSpeedOutputMultiplier(double multiplier);
                     double          GetSpeedOutputMultiplier();
 
+                    virtual frc::MotorController* GetImplementation()        = 0;
+
                 protected:
                     double          speedOutputMultiplier = 1.0;
                     util::Threshold speedThreshold        = util::Threshold(-1.0, 1.0);

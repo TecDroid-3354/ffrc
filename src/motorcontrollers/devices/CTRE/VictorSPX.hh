@@ -14,18 +14,20 @@ namespace ffrc {
                 public:
                     VictorSPX(std::unique_ptr<ctre::phoenix::motorcontrol::can::WPI_VictorSPX>);
 
-                    void    SetMotorSpeed(double)                    override;
-                    void    SetOutputVoltage(units::voltage::volt_t) override;
-                    double  GetMotorSpeed()                          override;
+                    void   SetMotorSpeed(double)                    override;
+                    void   SetOutputVoltage(units::voltage::volt_t) override;
+                    double GetMotorSpeed()                          override;
 
-                    void    StopMotor()                              override;
-                    void    DisableMotor()                           override;
+                    void   StopMotor()                              override;
+                    void   DisableMotor()                           override;
 
-                    void    SetInversionState(bool isInverted)       override;
-                    void    Invert()                                 override;
-                    bool    GetInversionState()                      override;
+                    void   SetInversionState(bool isInverted)       override;
+                    void   Invert()                                 override;
+                    bool   GetInversionState()                      override;
 
-                    void SetControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
+                    void   SetControlMode(ctre::phoenix::motorcontrol::VictorSPXControlMode);
+
+                    frc::MotorController* GetImplementation()        override;
 
                 protected:
                     std::unique_ptr<ctre::phoenix::motorcontrol::can::WPI_VictorSPX> controller;
