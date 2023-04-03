@@ -2,8 +2,8 @@
 #include <utility>
 
 #include "encoders/builders/MotorEncoderBuilder.hh"
-#include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
-#include "motorcontrollers/devices/REV/CANSparkMax.hh"
+#include "encoders/devices/rev/SparkMaxRelativeEncoder.hh"
+#include "motorcontrollers/devices/rev/CANSparkMax.hh"
 
 namespace ffrc {
 

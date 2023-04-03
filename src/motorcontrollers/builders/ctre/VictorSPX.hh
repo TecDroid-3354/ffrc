@@ -2,7 +2,7 @@
 #define FFRC_MOTORCONTROLLERS_BUILDERS_VICTOR_SPX_HH
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
-#include "motorcontrollers/devices/CTRE/VictorSPX.hh"
+#include "motorcontrollers/devices/ctre/VictorSPX.hh"
 
 #include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
 

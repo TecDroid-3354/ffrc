@@ -1,19 +1,25 @@
 #pragma once 
 
+#include <math.h>
+
 namespace ffrc {
 
     namespace util {
 
         struct Threshold {
-            double lowerBound;
-            double upperBound;
 
             Threshold(double lowerBound, double upperBound);
 
-            inline auto operator[](float value) -> bool { return value >= lowerBound && value <= upperBound; }
-        };
+            inline auto Clamp(double value) -> double { return std::fmin(this -> upperBound, std::fmax(this -> lowerBound, value)); }
 
-        double ClampValueInThreshold(Threshold&, double);
+            inline auto IsContained(double value) -> bool { return value >= lowerBound && value <= upperBound; }
+
+            inline auto operator[](double value) -> bool { return IsContained(value); }
+
+            double lowerBound;
+            double upperBound;
+
+        };
 
     }
 

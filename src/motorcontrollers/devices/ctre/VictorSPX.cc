@@ -10,7 +10,7 @@ namespace ffrc {
             controller(std::move(controller)) {}
 
             void VictorSPX::SetMotorSpeed(double speed) {
-                controller -> Set(controlMode, util::ClampValueInThreshold(speedThreshold, speed * speedOutputMultiplier));
+                controller -> Set(controlMode, speedThreshold.Clamp(speed * speedOutputMultiplier));
             }
 
             void VictorSPX::SetOutputVoltage(units::voltage::volt_t voltage) {

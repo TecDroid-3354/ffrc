@@ -7,8 +7,8 @@
 
 #include "RobotContainer.hh"
 
-#include "motorcontrollers/builders/REV/CANSparkMax.hh"
-#include "encoders/builders/REV/SparkMaxRelativeEncoder.hh"
+#include "motorcontrollers/builders/rev/CANSparkMax.hh"
+#include "encoders/builders/rev/SparkMaxRelativeEncoder.hh"
 
 class Robot : public frc::TimedRobot {
     friend RobotContainer;

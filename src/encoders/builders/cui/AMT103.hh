@@ -1,7 +1,7 @@
 #pragma once
 
 #include "encoders/builders/MotorEncoderBuilder.hh"
-#include "encoders/devices/CUI/AMT103.hh"
+#include "encoders/devices/cui/AMT103.hh"
 
 namespace ffrc {
 

@@ -48,7 +48,7 @@ namespace ffrc {
             }
 
             double PIDController::ClampInThreshold(double value) {
-                return util::ClampValueInThreshold(clampThreshold, value);
+                return clampThreshold.Clamp(value);
             }
 
             void PIDController::SetContinuousInputRange(util::Threshold range) {
@@ -69,7 +69,7 @@ namespace ffrc {
             }
 
             void PIDController::Update() {
-                output = util::ClampValueInThreshold(clampThreshold, controller -> Calculate(onReadInput()));
+                output = clampThreshold.Clamp(controller -> Calculate(onReadInput()));
             }
 
             void PIDController::FeedOutput() {
@@ -77,7 +77,7 @@ namespace ffrc {
             }
 
             void PIDController::UpdateAndFeed() {
-                output = util::ClampValueInThreshold(clampThreshold, controller -> Calculate(onReadInput()));
+                output = clampThreshold.Clamp(controller -> Calculate(onReadInput()));
                 onFeedOutput(output);
             }
 

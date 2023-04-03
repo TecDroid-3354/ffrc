@@ -10,7 +10,7 @@ namespace ffrc {
             controller(std::move(controller)), encoder(std::nullptr_t{}) {}
 
             void CANSparkMax::SetMotorSpeed(double speed) {
-                controller -> Set(util::ClampValueInThreshold(speedThreshold, speed * speedOutputMultiplier));
+                controller -> Set(speedThreshold.Clamp(speed * speedOutputMultiplier));
             }
 
             void CANSparkMax::SetOutputVoltage(units::voltage::volt_t voltage) {

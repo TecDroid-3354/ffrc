@@ -1,7 +1,7 @@
 #pragma once
 
 #include "motorcontrollers/devices/MotorController.hh"
-#include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
+#include "encoders/devices/rev/SparkMaxRelativeEncoder.hh"
 
 #include <rev/CANSparkMax.h>
 

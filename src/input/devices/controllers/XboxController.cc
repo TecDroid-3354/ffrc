@@ -13,54 +13,42 @@ namespace ffrc {
                 double controllerOutput = controller.GetLeftX() * leftXSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredLeftXValue);
 
-                return util::ClampValueInThreshold(leftXThreshold,
-                    value * leftXInversionMultiplier
-                );
+                return leftXThreshold.Clamp(value * leftXInversionMultiplier);
             }
 
             double XboxController::LeftYAxis() {
                 double controllerOutput = controller.GetLeftY() * leftYSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredLeftYValue);
 
-                return util::ClampValueInThreshold(leftYThreshold,
-                    value * leftYInversionMultiplier 
-                );
+                return leftYThreshold.Clamp(value * leftYInversionMultiplier);
             }
 
             double XboxController::RightXAxis() {
                 double controllerOutput = controller.GetRightX() * rightXSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredRightXValue);
 
-                return util::ClampValueInThreshold(rightXThreshold,
-                    value * rightXInversionMultiplier
-                );
+                return rightXThreshold.Clamp(value * rightXInversionMultiplier);
             }
 
             double XboxController::RightYAxis() {
                 double controllerOutput = controller.GetRightY() * rightYSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredRightYValue);
 
-                return util::ClampValueInThreshold(rightYThreshold,
-                    value * rightYInversionMultiplier
-                );
+                return rightYThreshold.Clamp(value * rightYInversionMultiplier);
             }
 
             double XboxController::LeftTriggerAxis() {
                 double controllerOutput = controller.GetLeftTriggerAxis() * leftTriggerSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredLeftTriggerValue);
 
-                return util::ClampValueInThreshold(leftTriggerThreshold,
-                    std::abs(value - leftTriggerOppositeOutput) * leftTriggerInversionMultiplier
-                );
+                return leftTriggerThreshold.Clamp(value - leftTriggerOppositeOutput) * leftTriggerInversionMultiplier;
             }
 
             double XboxController::RightTriggerAxis() {
                 double controllerOutput = controller.GetRightTriggerAxis() * rightTriggerSensitivity;
                 double value = controllerOutput * (std::abs(controllerOutput) >= minRequiredRightTriggerValue);
 
-                return util::ClampValueInThreshold(rightTriggerThreshold,
-                    std::abs(value - rightTriggerOpppsiteOutput) * rightTriggerInversionMultiplier
-                );
+                return rightTriggerThreshold.Clamp(value - rightTriggerOpppsiteOutput) * rightTriggerInversionMultiplier;
             }
 
             double XboxController::GetTriggerDifference(bool leftIsPositive) {

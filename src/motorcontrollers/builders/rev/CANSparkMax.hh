@@ -2,8 +2,8 @@
 #define FFRC_MOTORCONTROLLERS_BUILDERS_CAN_SPARK_MAX_HH
 
 #include "motorcontrollers/builders/MotorControllerBuilder.hh"
-#include "motorcontrollers/devices/REV/CANSparkMax.hh"
-#include "encoders/devices/REV/SparkMaxRelativeEncoder.hh"
+#include "encoders/devices/rev/SparkMaxRelativeEncoder.hh"
+#include "motorcontrollers/devices/rev/CANSparkMax.hh"
 
 #include <rev/CANSparkMax.h>
 
