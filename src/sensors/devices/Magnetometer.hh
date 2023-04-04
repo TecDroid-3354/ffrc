@@ -9,7 +9,7 @@ namespace ffrc {
 
         namespace sensors {
 
-            class Gyroscope {
+            class Magnetometer {
                 public:
 
                     virtual units::angle::degree_t GetCompassRotation() = 0;

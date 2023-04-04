@@ -8,7 +8,7 @@ namespace ffrc {
 
         namespace sensors {
 
-            class Gyroscope {
+            class PositionSensor {
                 public:
 
                     virtual units::length::meter_t GetXDisplacement() = 0;
@@ -18,6 +18,7 @@ namespace ffrc {
                     virtual void ResetXDisplacement() = 0;
                     virtual void ResetYDisplacement() = 0;
                     virtual void ResetZDisplacement() = 0;
+                    virtual void ResetDisplacement()  = 0;
 
             };
 
